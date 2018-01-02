@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="default">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="SA 作業一"/>
+
+
+
+
+  <meta name="keywords" content="homework, SA, It's Not My Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="It's Not My Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://freetsubasa.github.io/2014-09-22-SA-homework-1/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> SA 作業一 - It's Not My Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">It's Not My Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About Me
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">It's Not My Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About Me
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          SA 作業一
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-07-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/作業/">作業</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Topic List</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#寫在前面"><span class="toc-text">寫在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Requirements"><span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Submission"><span class="toc-text">Submission</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#作業"><span class="toc-text">作業</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝部分"><span class="toc-text">安裝部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新增使用者跟群組"><span class="toc-text">新增使用者跟群組</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#時間校正"><span class="toc-text">時間校正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開啟-SSH-服務"><span class="toc-text">開啟 SSH 服務</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他設定"><span class="toc-text">其他設定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS-設定"><span class="toc-text">DNS 設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Change-Mirror"><span class="toc-text">Change Mirror</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ports-mirror"><span class="toc-text">ports mirror</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pkgng-mirror"><span class="toc-text">pkgng mirror</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-portmaster"><span class="toc-text">Install portmaster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Sudo"><span class="toc-text">Install Sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Istall-vim"><span class="toc-text">Istall vim</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最後閒聊"><span class="toc-text">最後閒聊</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h1><p>結果我還是很不知死活的去修了交大的 SA 跟 程式安全<br>寫寫筆記 XD</p>
+<a id="more"></a>
+<hr>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Install FreeBSD 9.2-RELEASE<ul>
+<li>i386</li>
+<li>amd64</li>
+</ul>
+</li>
+<li>Add a user and a group<ul>
+<li>Group name should be identical to your username</li>
+<li>User should also be in the ‘wheel’ group                                                                                                                </li>
+</ul>
+</li>
+<li>Set your machine to current time zone and adjust current time</li>
+<li>Enable and run sshd</li>
+</ul>
+<hr>
+<h1 id="Submission"><a href="#Submission" class="headerlink" title="Submission"></a>Submission</h1><p>Login with the user you created</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ fetch http://cs.nctu.edu.tw/~shunyi/sahw1-1.sh</span><br><span class="line">$ sh ~/sahw1-1.sh</span><br></pre></td></tr></table></figure>
+<p>Key in your student ID while see<br>  “Please input your student ID: ”<br>then press Enter<br>Check <a href="http://nasa.cs.nctu.edu.tw/sysadm/hw1-1" target="_blank" rel="noopener">http://nasa.cs.nctu.edu.tw/sysadm/hw1-1</a> for your submission.</p>
+<hr>
+<h1 id="作業"><a href="#作業" class="headerlink" title="作業"></a>作業</h1><h2 id="安裝部分"><a href="#安裝部分" class="headerlink" title="安裝部分"></a>安裝部分</h2><p>這次直接開 VMare 做事，感謝小飛機大大的贊助。<br>安裝部分就一直按 <code>next</code> <code>ok</code> 之類的就好，反正我沒有要調多大的設定，或是切硬碟之類的</p>
+<h2 id="新增使用者跟群組"><a href="#新增使用者跟群組" class="headerlink" title="新增使用者跟群組"></a>新增使用者跟群組</h2><p>一開始安裝他就會問你說要不要新增使用者跟群組，就按照他的說明做下來<br>記得把自己加進 <code>wheel</code> 裡面，之後要新增的話，就直接打 <code>sudo adduser</code> 就好了</p>
+<h2 id="時間校正"><a href="#時間校正" class="headerlink" title="時間校正"></a>時間校正</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ntpdate clock.stdtime.gov.tw</span><br></pre></td></tr></table></figure>
+<h2 id="開啟-SSH-服務"><a href="#開啟-SSH-服務" class="headerlink" title="開啟 SSH 服務"></a>開啟 SSH 服務</h2><p>一開始的的 configure 就可以設定 ssh 服務，如果想要事後補設定也很簡單<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ vim /etc/rc.conf</span><br></pre></td></tr></table></figure></p>
+<p>加上 <code>ssh_enable=YES</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ /etc/rc.d/sshd start</span><br></pre></td></tr></table></figure>
+<h1 id="其他設定"><a href="#其他設定" class="headerlink" title="其他設定"></a>其他設定</h1><h2 id="DNS-設定"><a href="#DNS-設定" class="headerlink" title="DNS 設定"></a>DNS 設定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 8.8.4.4</span><br><span class="line">nameserver 140.113.235.1  #交大DNS Server</span><br></pre></td></tr></table></figure>
+<h2 id="Change-Mirror"><a href="#Change-Mirror" class="headerlink" title="Change Mirror"></a>Change Mirror</h2><h3 id="ports-mirror"><a href="#ports-mirror" class="headerlink" title="ports mirror"></a>ports mirror</h3><p>開啟 <code>/etc/make.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MASTER_SITE_BACKUP?= \</span><br><span class="line">  ftp://freebsd.cs.nctu.edu.tw/pub/FreeBSD/ports/distfiles/$&#123;DIST_SUBDIR&#125;/\</span><br><span class="line">  ftp://ftp.tw.freebsd.org/pub/FreeBSD/ports/distfiles/$&#123;DIST_SUBDIR&#125;/</span><br><span class="line">  MASTER_SITE_OVERRIDE?=  $&#123;MASTER_SITE_BACKUP&#125;</span><br><span class="line">  WITH_PKGNG= yes</span><br></pre></td></tr></table></figure>
+<h3 id="pkgng-mirror"><a href="#pkgng-mirror" class="headerlink" title="pkgng mirror"></a>pkgng mirror</h3><p>開啟 <code>/etc/portsnap.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SERVERNAME=portsnap.tw.FreeBSD.org</span><br></pre></td></tr></table></figure>
+<p>然後輸入以下指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">~$ portsnap fetch extract</span><br><span class="line">~$ pkg</span><br><span class="line">   The package management tool is not yet installed on your system.</span><br><span class="line">   Do you want to fetch and install it now? [y/N]: Y</span><br><span class="line">~$ pkg2ng</span><br><span class="line">~$ mkdir -p /usr/<span class="built_in">local</span>/etc/pkg/repos</span><br><span class="line">~$ vi /usr/<span class="built_in">local</span>/etc/pkg/repos/FreeBSD.conf</span><br><span class="line">   FreeBSD: &#123;</span><br><span class="line">   url: <span class="string">"pkg+http://pkg.FreeBSD.org/<span class="variable">$&#123;ABI&#125;</span>/latest"</span>,</span><br><span class="line">   mirror_type: <span class="string">"srv"</span>,</span><br><span class="line">   enabled: <span class="string">"yes"</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Install-portmaster"><a href="#Install-portmaster" class="headerlink" title="Install portmaster"></a>Install portmaster</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~$ portmaster /usr/ports/security/sudo</span><br><span class="line">~$ vipw</span><br><span class="line">~$ usermod -aG wheel your_username</span><br><span class="line">~$ visudo</span><br><span class="line">   %wheel ALL=(ALL) ALL</span><br><span class="line">~$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h2 id="Install-Sudo"><a href="#Install-Sudo" class="headerlink" title="Install Sudo"></a>Install Sudo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~$ portmaster /usr/ports/security/sudo</span><br><span class="line">~$ vipw</span><br><span class="line">~$ usermod -aG wheel your_username</span><br><span class="line">~$ visudo</span><br><span class="line">   %wheel ALL=(ALL) ALL</span><br><span class="line">~$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h2 id="Istall-vim"><a href="#Istall-vim" class="headerlink" title="Istall vim"></a>Istall vim</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo portmaster /usr/ports/editor/vim</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="最後閒聊"><a href="#最後閒聊" class="headerlink" title="最後閒聊"></a>最後閒聊</h1><p>感謝 Davy 大大提供的文件，話說 AHQ 輸了 O_Q<br>王爺的夢哪時候才會實現呢，好想聽到全場大喊 Read My Name 哦</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://freetsubasa.github.io">freetsubasa</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://freetsubasa.github.io/2014-09-22-SA-homework-1/">http://freetsubasa.github.io/2014-09-22-SA-homework-1/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC-ND</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/homework/">homework</a>
+            
+              <a href="/tags/SA/">SA</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015-08-05-Kaohsiung-Kenting-Travel/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">夜衝墾丁摸海膽</span>
+        <span class="prev-text nav-mobile">Last Post</span>
+      </a>
+    
+    
+      <a class="next" href="/2014-08-26-onepiece-dating-with-my-sister/">
+        <span class="next-text nav-default">8/4 尾田栄一郎監修ONE PIECE展《原画X映像X体感航海王台灣》</span>
+        <span class="prev-text nav-mobile">Next Post</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:freetsubasa@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://twitter.com/freetsubasa" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.facebook.com/freetsubasa" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/freetsubasa" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/freetsubasa" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> 
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Based on - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">freetsubasa</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

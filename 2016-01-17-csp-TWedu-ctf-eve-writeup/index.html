@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="default">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="[電安CSP] 2015 TWedu CTF Eve writeup"/>
+
+
+
+
+  <meta name="keywords" content="homework, writeup, It's Not My Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="It's Not My Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://freetsubasa.github.io/2016-01-17-csp-TWedu-ctf-eve-writeup/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> [電安CSP] 2015 TWedu CTF Eve writeup - It's Not My Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">It's Not My Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About Me
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">It's Not My Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About Me
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          [電安CSP] 2015 TWedu CTF Eve writeup
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-01-17
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/write-up/">write up</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line">  You sniffed some tcp streams from Snoopy. Can you find the secrets?</span><br><span class="line">Hint</span><br><span class="line">  1. HTTP content usually is compressed, try to decompress it.</span><br><span class="line">  2. wrong password!? Something will be wrong. Have you checked everything is correct?</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><img src="http://i.imgur.com/SMPG2uw.jpg" alt=""></p>
+<p>你會先得到一個封包檔，大致上掃過一次之後就打算 Export HTTP Object 出來，看起來有個 zip 檔跟一個網頁，把網頁打開就會得到第一把 flag </p>
+<p><code>CTF{y0u_c4n_533_7h15_p463!y0u_4r3_7h3_pc4p_k1n6!!}</code></p>
+<p><img src="http://imgur.com/Q3caxsX.jpg" alt=""></p>
+<p>底下有關於 flag2 的提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Here is a encrypted gift to Snoopy.</span><br><span class="line">password: This_is_the_passwr0d_of_zip_it_is_not_the_flag_2</span><br><span class="line">md5: 19dc2819a12d1f5863ddabe36ce7079f</span><br><span class="line">par2: </span><br><span class="line">	gift.zip.par2: cbf77a48e816d892ee3217ce896fd0e5</span><br><span class="line">	gift.zip.vol0+3.par2: 611f6b8b418899e806fbc1d0a78c7c96</span><br></pre></td></tr></table></figure>
+<p>剩下三個檔案分別是 <code>gift.zip</code>、<code>gift.zip.par2</code>、<code>gift.zip.vol0+3.par2</code> </p>
+<p>原本你拿到的 gift.zip 檔案的 md5 跟網頁上面給的 md5 是不一樣的，所以這個 zip 檔案應該是損毀的，然後 par2 副檔名基本上是用來修復 zip 檔案的，在網路上找個像是 <a href="http://www.quickpar.org.uk" target="_blank" rel="noopener">QuickPar</a> 的程式就可以將 gift.zip 檔修復打開 </p>
+<p><img src="http://i.imgur.com/I5MQUE7.png" alt=""></p>
+<p>然後 gift.zip 的密碼在網頁上面有 <code>This_is_the_passwr0d_of_zip_it_is_not_the_flag_2</code>這樣就可以順利拿到第二把 flag 了 \0w0/</p>
+<p><img src="http://imgur.com/mSTUS9F.png" alt=""></p>
+<p><code>CTF{y0u_c4n_u53_par2_to_r3c0v3r_7h3_br0k3n_f1l3_n0w}</code></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://freetsubasa.github.io">freetsubasa</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://freetsubasa.github.io/2016-01-17-csp-TWedu-ctf-eve-writeup/">http://freetsubasa.github.io/2016-01-17-csp-TWedu-ctf-eve-writeup/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC-ND</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/homework/">homework</a>
+            
+              <a href="/tags/writeup/">writeup</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016-01-21-csp-game11-writeup/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">[電安CSP] 2015 金盾 Game11 writeup</span>
+        <span class="prev-text nav-mobile">Last Post</span>
+      </a>
+    
+    
+      <a class="next" href="/2016-01-15-csp-TWedu-CTF-Backup-writeup/">
+        <span class="next-text nav-default">[電安CSP] 2015 TW.edu CTF Backup writeup</span>
+        <span class="prev-text nav-mobile">Next Post</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:freetsubasa@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://twitter.com/freetsubasa" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.facebook.com/freetsubasa" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/freetsubasa" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/freetsubasa" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> 
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Based on - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">freetsubasa</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

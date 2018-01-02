@@ -231,38 +231,21 @@
 <p><code>/?p=php://filter/convert.base64-encode/resource=%66lag</code></p>
 <p>就可以得到 flag.php 的原始碼了，我覺得 pre-exam 的麻煩多了 XDD</p>
 <hr>
-<h1 id="Misc-部分"><a href="#Misc-部分" class="headerlink" title="Misc 部分"></a>Misc 部分</h1><h2 id="1-分題-1"><a href="#1-分題-1" class="headerlink" title="1 分題"></a>1 分題</h2><p>打開 misc1.txt 會發現 <code>begin 644 quiz</code> 的文字</p>
-<p>或是拿去  file 一下就會發現他是 Uuencoding ，於是拿去線上 decode 網站</p>
-<p>然後你會得到一個壓縮檔，解壓縮兩次可以得到兩張圖</p>
-<p>根據題目 <code>Throw the ball to the pokemon!</code></p>
-<p>將兩張圖疊在一起，調高對比度就可以看見 flag  了</p>
-<h2 id="2-分題-1"><a href="#2-分題-1" class="headerlink" title="2 分題"></a>2 分題</h2><p>把題目給的 <code>skype.apk</code> 拿去反組譯，根據題目說明 <code>What is the IP address where the malware sends data?</code></p>
-<p>搜尋一下 <code>address</code> 這個單字就會得到 IP 了</p>
+<h1 id="Misc-部分"><a href="#Misc-部分" class="headerlink" title="Misc 部分"></a>Misc 部分</h1><h2 id="1-分題-1"><a href="#1-分題-1" class="headerlink" title="1 分題"></a>1 分題</h2><p>打開 misc1.txt 會發現 <code>begin 644 quiz</code> 的文字<br>或是拿去  file 一下就會發現他是 Uuencoding ，於是拿去線上 decode 網站<br>然後你會得到一個壓縮檔，解壓縮兩次可以得到兩張圖</p>
+<p>根據題目 <code>Throw the ball to the pokemon!</code><br>將兩張圖疊在一起，調高對比度就可以看見 flag  了</p>
+<h2 id="2-分題-1"><a href="#2-分題-1" class="headerlink" title="2 分題"></a>2 分題</h2><p>把題目給的 <code>skype.apk</code> 拿去反組譯，根據題目說明 <code>What is the IP address where the malware sends data?</code><br>搜尋一下 <code>address</code> 這個單字就會得到 IP 了</p>
 <h2 id="3-分題-1"><a href="#3-分題-1" class="headerlink" title="3 分題"></a>3 分題</h2><p>這題超通靈的 (誤)</p>
-<p>首先你要先把 lime.dump 用 volatility 掛起來，看有哪些奇怪的 process</p>
-<p>會得到題是說跟網頁有關</p>
-<p>在根據題目 <code>What is a suspicious string in the Android memory dump (18 characters including English letters and punctuation)?</code></p>
-<p>你會得到看到有個奇怪的 domain name ，算算長度剛剛好 18 個字</p>
-<p>不用懷疑，就是他，我當初為什麼要懷疑我自己呢 QQ</p>
-<p>這題我當下沒有解出來，是最後跟老師求證了一下答案，確定是這樣沒有錯 QQ</p>
+<p>首先你要先把 lime.dump 用 volatility 掛起來，看有哪些奇怪的 process<br>會得到題是說跟網頁有關</p>
+<p>再根據題目 <code>What is a suspicious string in the Android memory dump (18 characters including English letters and punctuation)?</code><br>你會得到看到有個奇怪的 domain name ，算算長度剛剛好 18 個字</p>
+<p>不用懷疑，就是他，我當初為什麼要懷疑我自己呢 QQ<br>這題我當下沒有解出來，是最後跟老師求證了一下答案，確定是這樣沒有錯 QQ</p>
 <p><code>ais3{stealyourmoney.com}</code></p>
 <hr>
-<h1 id="Misc-Crypto-部分"><a href="#Misc-Crypto-部分" class="headerlink" title="Misc + Crypto 部分"></a>Misc + Crypto 部分</h1><h2 id="1-分題-2"><a href="#1-分題-2" class="headerlink" title="1 分題"></a>1 分題</h2><p>根據題目敘述 <code>What is the email account of the facebook user?</code></p>
-<p>把檔案下載下來直接 grep 關鍵字，我個人是搜尋 @facebook.com 啦</p>
+<h1 id="Misc-Crypto-部分"><a href="#Misc-Crypto-部分" class="headerlink" title="Misc + Crypto 部分"></a>Misc + Crypto 部分</h1><h2 id="1-分題-2"><a href="#1-分題-2" class="headerlink" title="1 分題"></a>1 分題</h2><p>根據題目敘述 <code>What is the email account of the facebook user?</code><br>把檔案下載下來直接 grep 關鍵字，我個人是搜尋 @facebook.com 啦</p>
 <p>總之，就會得到 user 的 FB 帳號了</p>
 <hr>
-<h1 id="寫在後面"><a href="#寫在後面" class="headerlink" title="寫在後面"></a>寫在後面</h1><p>剩下的題目有些真的來不及看啊 QQ</p>
-<p>後來拿了名次扣除掉助教隊伍後是全區第二北區第二，感謝隊友！</p>
-<p>這幾天真的滿好玩的，各種有趣的主題，</p>
-<p>也吃了人生第一次的鼎泰豐！還有第一次的永康街冰沙！XD</p>
-<p>可是幾乎天天通勤好累啊 QwQ</p>
-<p>整個人的身體差點出狀況，還好這幾天有睡飽，比較好一點了</p>
-<p>感謝隊友跟助教願意讓我一直問一些笨問題</p>
-<p>感謝 TDoH 給我一個多的便當跟飲料，會給我食物的都是神！</p>
-<p>感謝天大地大台科大讓我得到快龍 XD</p>
-<p>感謝網路組提供的超快網路，一排一條光纖耶，有錢真好 QQ</p>
-<p><del>對了 wifi 密碼超宅 XDD</del></p>
-<p>感謝這一個禮拜以來每一個講師，當學生真的好幸福啊</p>
+<h1 id="寫在後面"><a href="#寫在後面" class="headerlink" title="寫在後面"></a>寫在後面</h1><p>剩下的題目有些真的來不及看啊 QQ<br>後來拿了名次扣除掉助教隊伍後是全區第二北區第二，感謝隊友！</p>
+<p>這幾天真的滿好玩的，各種有趣的主題，<br>也吃了人生第一次的鼎泰豐！還有第一次的永康街冰沙！XD<br>可是幾乎天天通勤好累啊 QwQ<br>整個人的身體差點出狀況，還好這幾天有睡飽，比較好一點了</p>
+<p>感謝隊友跟助教願意讓我一直問一些笨問題<br>感謝 TDoH 給我一個多的便當跟飲料，會給我食物的都是神！<br>感謝天大地大台科大讓我得到快龍 XD<br>感謝網路組提供的超快網路，一排一條光纖耶，有錢真好 QQ<br><del>對了 wifi 密碼超宅 XDD</del><br>感謝這一個禮拜以來每一個講師，當學生真的好幸福啊</p>
 <p>題外，終於看見 Charles Yang 本人惹 XDDD</p>
 
       
@@ -315,6 +298,12 @@
         <span class="prev-text nav-mobile">Last Post</span>
       </a>
     
+    
+      <a class="next" href="/2016-01-19-csp-TWedu-ctf-misc-writeup/">
+        <span class="next-text nav-default">[電安CSP] 2015 TWedu CTF Russian Dolls & zxcvb & Overthewire writeup</span>
+        <span class="prev-text nav-mobile">Next Post</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
@@ -406,7 +395,7 @@
     
     &copy; 
      
-      2015 - 
+      2014 - 
     
     2018
 

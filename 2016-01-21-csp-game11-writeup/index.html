@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="default">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="[電安CSP] 2015 金盾 Game11 writeup"/>
+
+
+
+
+  <meta name="keywords" content="homework, writeup, It's Not My Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="It's Not My Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://freetsubasa.github.io/2016-01-21-csp-game11-writeup/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> [電安CSP] 2015 金盾 Game11 writeup - It's Not My Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">It's Not My Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About Me
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">It's Not My Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About Me
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          [電安CSP] 2015 金盾 Game11 writeup
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-01-21
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/write-up/">write up</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <p>有一張叫做 <code>ImageHide.bmp</code> 的圖片跟一個需要密碼的壓縮檔 <code>Wep-Crack.rar</code><br>先把圖片丟進 <code>ImageHide</code> 這隻程式裡面，可以得到一串文字</p>
+<a id="more"></a>
+<p><img src="/images/Game11/1.png" alt=""></p>
+<p>看到裡面有重複出現 <code>13</code> 這個數字猜測是用 <code>ROT-13</code> ，放到 online tool 跑一下就可以得到 zip 檔案的密碼 </p>
+<p><img src="/images/Game11/2.png" alt=""></p>
+<p><code>The password is wooooohaaaaa</code> </p>
+<p>拿這串密碼去解壓縮 <code>Wep-Crack.rar</code> 這個檔案裡面會有四個檔案分別是 <code>wepp-01.cap</code>、<code>wepp-01.csv</code>、<code>wepp-01.kismet.csv</code>、<code>wepp-01.kismet.netxml</code><br>然後聽說要爆無線網路的密碼，利用 <a href="http://www.aircrack-ng.org/" target="_blank" rel="noopener">aircrack-ng</a> 去解 WEP 密碼</p>
+<p><img src="/images/Game11/3.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ aircrack-ng -b 54:B8:0A:0D:10:38 wepp-01.cap</span><br></pre></td></tr></table></figure>
+<p>參數部分可以參考他們的<a href="http://www.aircrack-ng.org/doku.php?id=aircrack-ng" target="_blank" rel="noopener">說明書</a></p>
+<p><img src="/images/Game11/4.png" alt=""></p>
+<p>就得到密碼是為 <code>09:73:55:90:37</code> 然後利用這組密碼回去解封包</p>
+<p><img src="/images/Game11/5.png" alt=""></p>
+<p>在 wireshark 上方工具列的 Edit -&gt; preferences &gt; Protocols &gt; IEEE 802.11 把剛剛拿到的密碼加進去，記得要把 Enable decryption 這個選項打勾，不然會跟我一樣耍笨很久 QQ</p>
+<p>題目說要找 104 人力銀行的登入帳號密碼，密碼就是 flag<br>利用 fliter 的方式過濾封包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.dst == 122.147.53.12  # 122.147.53.12 是 104 的 ip</span><br></pre></td></tr></table></figure>
+<p>然後用搜尋字串的方式找 password 在哪裡，就可以得到 flag 了</p>
+<p><img src="/images/Game11/6.png" alt=""></p>
+<p><code>The flag is Teem0</code></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://freetsubasa.github.io">freetsubasa</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://freetsubasa.github.io/2016-01-21-csp-game11-writeup/">http://freetsubasa.github.io/2016-01-21-csp-game11-writeup/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC-ND</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/homework/">homework</a>
+            
+              <a href="/tags/writeup/">writeup</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016-01-19-csp-TWedu-ctf-misc-writeup/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">[電安CSP] 2015 TWedu CTF Russian Dolls & zxcvb & Overthewire writeup</span>
+        <span class="prev-text nav-mobile">Last Post</span>
+      </a>
+    
+    
+      <a class="next" href="/2016-01-17-csp-TWedu-ctf-eve-writeup/">
+        <span class="next-text nav-default">[電安CSP] 2015 TWedu CTF Eve writeup</span>
+        <span class="prev-text nav-mobile">Next Post</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:freetsubasa@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://twitter.com/freetsubasa" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.facebook.com/freetsubasa" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/freetsubasa" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/freetsubasa" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> 
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Based on - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">freetsubasa</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
