@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="default">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="AIS3 2016 Final Exam CTF"/>
+
+
+
+
+  <meta name="keywords" content="writeup, ais3, It's Not My Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="It's Not My Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://freetsubasa.github.io/2016-08-29-AIS3-Final-examw/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> AIS3 2016 Final Exam CTF - It's Not My Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">It's Not My Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About Me
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">It's Not My Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About Me
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          AIS3 2016 Final Exam CTF
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-08-29
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/write-up/">write up</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Topic List</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#寫在前面"><span class="toc-text">寫在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-部分"><span class="toc-text">Web 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-分題"><span class="toc-text">1 分題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-分題"><span class="toc-text">2 分題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-分題"><span class="toc-text">3 分題</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc-部分"><span class="toc-text">Misc 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-分題-1"><span class="toc-text">1 分題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-分題-1"><span class="toc-text">2 分題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-分題-1"><span class="toc-text">3 分題</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc-Crypto-部分"><span class="toc-text">Misc + Crypto 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-分題-2"><span class="toc-text">1 分題</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#寫在後面"><span class="toc-text">寫在後面</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h1><p>今年終於有時間 (?) 參加 AIS3 了</p>
+<p>最後的 final exam 也拿了一個還算可以的成績，<br>就把我解掉的題目寫個筆記吧</p>
+<p>最後名次以及盤解題畫面</p>
+<a id="more"></a>
+<p><img src="/images/ais3/1.png" alt=""></p>
+<hr>
+<h1 id="Web-部分"><a href="#Web-部分" class="headerlink" title="Web 部分"></a>Web 部分</h1><p>感覺這次 Web 的部分比 pre-exam 還要簡單一點</p>
+<h2 id="1-分題"><a href="#1-分題" class="headerlink" title="1 分題"></a>1 分題</h2><p>看原始碼後會找到一個叫做 db.js 的檔案</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db = [</span><br><span class="line">    &#123;<span class="attr">username</span>: <span class="string">"admin"</span>, <span class="attr">password</span>: <span class="string">"36d3e1bc65f8b67935ae60f542abef3e55c5bbbd547854966400cc4f022566cb"</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>然後前面的 js 有說這是 sha256 ，就拿去線上加解密的網頁，就會得到 admin 的密碼了 <code>!@#$%^&amp;*()_+</code></p>
+<h2 id="2-分題"><a href="#2-分題" class="headerlink" title="2 分題"></a>2 分題</h2><p>這題我想了比較久一點，一開始看 js 的時候不知道為什麼看著 <code>ret</code> 想到的是老鼠 ( 我承認我累了 )</p>
+<p>觀察了一下 login.php 的部分，會看到他是用 json 去判斷的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"db.php"</span>;</span><br><span class="line"></span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> json_encode(<span class="keyword">array</span>(<span class="string">"ret"</span>=&gt; <span class="string">"1"</span>, <span class="string">"msg"</span> =&gt; <span class="string">"Success"</span>));</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">err</span><span class="params">($s, $hint = <span class="string">""</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($hint)</span><br><span class="line">        <span class="keyword">echo</span> json_encode(<span class="keyword">array</span>(<span class="string">"ret"</span>=&gt; <span class="string">"0"</span>, <span class="string">"msg"</span> =&gt; $s, <span class="string">"hint"</span> =&gt; $hint));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">echo</span> json_encode(<span class="keyword">array</span>(<span class="string">"ret"</span>=&gt; <span class="string">"0"</span>, <span class="string">"msg"</span> =&gt; $s));</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check_form</span><span class="params">($data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> is_array($data) &amp;&amp; <span class="keyword">isset</span>($data[<span class="string">"username"</span>]) &amp;&amp; <span class="keyword">isset</span>($data[<span class="string">"password"</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($_SERVER[<span class="string">"REQUEST_METHOD"</span>] === <span class="string">"POST"</span>)</span><br><span class="line">&#123;</span><br><span class="line">    $data = json_decode(file_get_contents(<span class="string">"php://input"</span>), <span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">if</span> (check_form($data))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// $db is defined in db.php</span></span><br><span class="line">        <span class="keyword">foreach</span> ($db <span class="keyword">as</span> $user)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>($data[<span class="string">"username"</span>] == $user[<span class="string">"username"</span>] &amp;&amp; $data[<span class="string">"password"</span>] == $user[<span class="string">"password"</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                $_SESSION[<span class="string">"login"</span>] = <span class="keyword">true</span>;</span><br><span class="line">                $_SESSION[<span class="string">"level"</span>] = <span class="number">2</span>;</span><br><span class="line">                $_SESSION[<span class="string">"username"</span>] = $user[<span class="string">"username"</span>];</span><br><span class="line">                success();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        err(<span class="string">"Username or Password error"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        err(<span class="string">"Invalid form"</span>, <span class="string">"Don't know what to do next? Get the source of login.php via sendding GET request to this page"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Don't know what to do next?&lt;/br&gt;&lt;/br&gt; Read source of &lt;code&gt;login.php&lt;/code&gt; here: &lt;/br&gt;"</span>;</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>總之，修改傳送出去的資料，原本會是 <code>{ &quot;username&quot; : &quot;admin&quot;, &quot;password&quot; : &quot;password&quot;}</code></p>
+<p>改成 <code>{ &quot;username&quot; : &quot;admin&quot;, &quot;password&quot; : true}</code></p>
+<p>你就可以成功以 admin 的身分登入了</p>
+<h2 id="3-分題"><a href="#3-分題" class="headerlink" title="3 分題"></a>3 分題</h2><p>感覺 AIS3 很喜歡這招 XD</p>
+<p><code>/?p=php://filter/convert.base64-encode/resource=index</code></p>
+<p>拿去 base64 decode 之後，會得到 index.php 的原始碼<br>發現會對一些特殊單字做過濾，像是 <code>flag</code>、<code>select</code>、<code>union</code> 之類的</p>
+<p>結果這題只要改成</p>
+<p><code>/?p=php://filter/convert.base64-encode/resource=%66lag</code></p>
+<p>就可以得到 flag.php 的原始碼了，我覺得 pre-exam 的麻煩多了 XDD</p>
+<hr>
+<h1 id="Misc-部分"><a href="#Misc-部分" class="headerlink" title="Misc 部分"></a>Misc 部分</h1><h2 id="1-分題-1"><a href="#1-分題-1" class="headerlink" title="1 分題"></a>1 分題</h2><p>打開 misc1.txt 會發現 <code>begin 644 quiz</code> 的文字</p>
+<p>或是拿去  file 一下就會發現他是 Uuencoding ，於是拿去線上 decode 網站</p>
+<p>然後你會得到一個壓縮檔，解壓縮兩次可以得到兩張圖</p>
+<p>根據題目 <code>Throw the ball to the pokemon!</code></p>
+<p>將兩張圖疊在一起，調高對比度就可以看見 flag  了</p>
+<h2 id="2-分題-1"><a href="#2-分題-1" class="headerlink" title="2 分題"></a>2 分題</h2><p>把題目給的 <code>skype.apk</code> 拿去反組譯，根據題目說明 <code>What is the IP address where the malware sends data?</code></p>
+<p>搜尋一下 <code>address</code> 這個單字就會得到 IP 了</p>
+<h2 id="3-分題-1"><a href="#3-分題-1" class="headerlink" title="3 分題"></a>3 分題</h2><p>這題超通靈的 (誤)</p>
+<p>首先你要先把 lime.dump 用 volatility 掛起來，看有哪些奇怪的 process</p>
+<p>會得到題是說跟網頁有關</p>
+<p>在根據題目 <code>What is a suspicious string in the Android memory dump (18 characters including English letters and punctuation)?</code></p>
+<p>你會得到看到有個奇怪的 domain name ，算算長度剛剛好 18 個字</p>
+<p>不用懷疑，就是他，我當初為什麼要懷疑我自己呢 QQ</p>
+<p>這題我當下沒有解出來，是最後跟老師求證了一下答案，確定是這樣沒有錯 QQ</p>
+<p><code>ais3{stealyourmoney.com}</code></p>
+<hr>
+<h1 id="Misc-Crypto-部分"><a href="#Misc-Crypto-部分" class="headerlink" title="Misc + Crypto 部分"></a>Misc + Crypto 部分</h1><h2 id="1-分題-2"><a href="#1-分題-2" class="headerlink" title="1 分題"></a>1 分題</h2><p>根據題目敘述 <code>What is the email account of the facebook user?</code></p>
+<p>把檔案下載下來直接 grep 關鍵字，我個人是搜尋 @facebook.com 啦</p>
+<p>總之，就會得到 user 的 FB 帳號了</p>
+<hr>
+<h1 id="寫在後面"><a href="#寫在後面" class="headerlink" title="寫在後面"></a>寫在後面</h1><p>剩下的題目有些真的來不及看啊 QQ</p>
+<p>後來拿了名次扣除掉助教隊伍後是全區第二北區第二，感謝隊友！</p>
+<p>這幾天真的滿好玩的，各種有趣的主題，</p>
+<p>也吃了人生第一次的鼎泰豐！還有第一次的永康街冰沙！XD</p>
+<p>可是幾乎天天通勤好累啊 QwQ</p>
+<p>整個人的身體差點出狀況，還好這幾天有睡飽，比較好一點了</p>
+<p>感謝隊友跟助教願意讓我一直問一些笨問題</p>
+<p>感謝 TDoH 給我一個多的便當跟飲料，會給我食物的都是神！</p>
+<p>感謝天大地大台科大讓我得到快龍 XD</p>
+<p>感謝網路組提供的超快網路，一排一條光纖耶，有錢真好 QQ</p>
+<p><del>對了 wifi 密碼超宅 XDD</del></p>
+<p>感謝這一個禮拜以來每一個講師，當學生真的好幸福啊</p>
+<p>題外，終於看見 Charles Yang 本人惹 XDDD</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://freetsubasa.github.io">freetsubasa</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://freetsubasa.github.io/2016-08-29-AIS3-Final-examw/">http://freetsubasa.github.io/2016-08-29-AIS3-Final-examw/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC-ND</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/writeup/">writeup</a>
+            
+              <a href="/tags/ais3/">ais3</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016-12-31-goodbye-2016/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Goodbye, 2016</span>
+        <span class="prev-text nav-mobile">Last Post</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:freetsubasa@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://twitter.com/freetsubasa" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.facebook.com/freetsubasa" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/freetsubasa" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.instagram.com/freetsubasa" class="iconfont icon-instagram" title="instagram"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> 
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Based on - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">freetsubasa</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
