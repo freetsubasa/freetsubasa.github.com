@@ -17,12 +17,12 @@
 
 
 
-  <meta name="description" content="小小線路組組員的一點心得"/>
+  <meta name="description" content="Hack the Box 筆記 - Doctor"/>
 
 
 
 
-  <meta name="keywords" content="coscup, cprteam, It's Not My Blog" />
+  <meta name="keywords" content="writeup, hackthebox, It's Not My Blog" />
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://freetsubasa.github.io/2015-08-17-COSCUP2015/"/>
+<link rel="canonical" href="http://freetsubasa.github.io/2021-01-31-hack-the-box-doctor/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -79,7 +79,7 @@
 
 
 
-    <title> COSCUP 2015 一點心得 - It's Not My Blog </title>
+    <title> Hack the Box 筆記 - Doctor - It's Not My Blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -195,18 +195,18 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          COSCUP 2015 一點心得
+          Hack the Box 筆記 - Doctor
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2015-08-17
+          2021-01-31
         </span>
         
           <div class="post-category">
             
-              <a href="/categories/Conf/">Conf</a>
+              <a href="/categories/hackthebox/">hackthebox</a>
             
           </div>
         
@@ -219,77 +219,42 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Topic List</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#寫在前面"><span class="toc-text">寫在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day-0"><span class="toc-text">Day 0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1"><span class="toc-text">Day1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day2"><span class="toc-text">Day2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#After-COSCUP"><span class="toc-text">After COSCUP</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-寫在前面"><span class="toc-text">0x00 寫在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-基本註冊-登入-vpn-config"><span class="toc-text">0x01 基本註冊/登入/vpn config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-收集訊息"><span class="toc-text">0x02 收集訊息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x03-尋找可攻擊的點"><span class="toc-text">0x03 尋找可攻擊的點</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x04-尋找使用者密碼-Get-root-shell"><span class="toc-text">0x04 尋找使用者密碼 + Get root shell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x05-小記"><span class="toc-text">0x05 小記</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h1 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h1><p>剛好在 twitter 上面看到有人貼線路組招募資訊，<br>小飛機也是一臉「我想教你但是我沒空，你就自己去學吧」的臉 (?)</p>
-<p>所以我就傻傻的去報了線路組，其實我本來以為我會是砲灰的 orz</p>
-<p>結果我還真的收到錄取通知，<br>收到的那一刻我都快傻啦，真的出乎我的意料之外 QQ</p>
+        <h1 id="0x00-寫在前面"><a href="#0x00-寫在前面" class="headerlink" title="0x00 寫在前面"></a>0x00 寫在前面</h1><p>前陣子因為一些原因開始想刷些題目<br>維持一下自己對一些資安技術的敏感度<br>所以就挑了 Hack the Box 的系列當成某種作業來進行  </p>
+<p>因為根據規則好像不能寫完整的 walkthrough<br>所以基本上這系列（如果可以寫成系列的話…）會偏比較筆記的形式<br><del>所以有可能只有我看得懂（逃）</del></p>
 <a id="more"></a>
-<hr>
-<h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>早上莫名的在交流道塞車，結果變成到中研院的時間剛剛好 XD</p>
-<p>然後就先去 R1 放東西，<br>在滑手機的時候應該是場務組的人跑來跟我聊天，<br>他就問我說線路組要幹嘛，還有一些奇奇怪怪的問題XD</p>
-<p>然後就跟我要 FB 了 XDDDD</p>
-<p>中午吃飯的時候感謝 xxx 跟 JohnDoe 跑來跟我搭話，<br>不然我覺得我會尷尬到整個活動結束 QQ</p>
-<p>下午就開始去場佈拉線放 AP 有的沒的，<br>拉的線如果被小飛機看到一定會被嫌棄XDDDDD</p>
-<p>大概就是會嫌拉的不夠直，膠帶貼的不夠漂亮之類的吧，我猜</p>
-<p>反正等小飛機第二天進到 H2 辦 SDN Workshop 的時候我人也不會在現場 (大誤)</p>
-<p>然後晚餐吃摩斯，<br>吃完晚餐整完最後的線路之後就跟其他線路組組員坐在地上聊天</p>
-<p>原來 <a href="http://sdnds.tw" target="_blank" rel="noopener">SDNDS.TW</a> 的成員也有在線路組的，<br>也有今年剛升上大一的，也有國中生，高中生，不知道為什麼突然覺得自己好老 QQ</p>
-<p>晚上跟我一起睡的是一個人很好的姊姊 &gt;w&lt;</p>
-<p>然後我 11 點以前就陣亡了，顯然是因為最近生活過的太規律 XDD</p>
-<p>無法晚睡的日子好痛苦啊</p>
-<hr>
-<h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><p>早上把攤位的網路重新測了一次，但是 2.4G 的網路還是不穩得很嚴重 QQ</p>
-<p>只能請廠商插有線網路，剛剛好有場沒帶轉接頭跟網路線，<br>於是我就把我身上的轉接頭跟網路線借出去了，囧a</p>
-<p>然後有拿到 MySQL 可愛的海豚，攤位上面的人好好哦 QQ</p>
-<p>下午晃著晃著小飛機就出現了，來自四面八方的各種通報 (?)</p>
-<p>順便跟小飛機拿了 Thunderbolt 轉 RJ45 嶄新的閃亮亮的 &lt;3</p>
-<p>晚上 Bof 去了線路組的，<br>除了有 pizza 還有好吃的烤鴨耶 \0w0/</p>
-<p>後半段時間路過一下 CTF 分享會 (是貨真價實的路過)，<br>人還滿多的，一群黑黑</p>
-<p>後面就是中部地區大食團，<br>他們的 pizza 多的莫名，我這麼晚去竟然還有剩下的 pizza 沒有吃完 XD</p>
-<p>然後終於看見傳說中的 jc 長什麼樣子，<br>因為那天晚上有超多人問我有沒有看到 jc 在哪裡 XDD</p>
-<hr>
-<h1 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h1><p>早上超級早起的去拍照，空拍機超帥氣的啊啊啊啊啊啊啊</p>
-<p>不知道可以操控的最高跟最遠距離是多少，因為整台看起來真的滿大台的</p>
-<p>中午幫忙小飛機搶 Lighting Talk ，一個搶到順位一，覺得我自己有點厲害</p>
-<p>下午就幫忙徹場，搬東西，然後去聽期待的 LightingTalk XD</p>
+<h1 id="0x01-基本註冊-登入-vpn-config"><a href="#0x01-基本註冊-登入-vpn-config" class="headerlink" title="0x01 基本註冊/登入/vpn config"></a>0x01 基本註冊/登入/vpn config</h1><p>這個應該偏簡單，登入需要使用的 invite code F12 大法按下去就好了<br>vpn 設定的部分建議弄有桌面環境的 kali 大禮包，真的會方便很多<br>VM 的網路部分設定成 Bridge 然後用下載下來的 vpn config 直接連上應該就好了  </p>
+<h1 id="0x02-收集訊息"><a href="#0x02-收集訊息" class="headerlink" title="0x02 收集訊息"></a>0x02 收集訊息</h1><p><img src="https://i.imgur.com/si5GkPw.png" alt=""></p>
+<p>nmap 掃過一輪發現只有開 22/80/8089 port<br>8089 port 根據 google 的結果是 splunk 在使用的 port</p>
+<p>之後可以直接連上網頁看一看有沒有什麼有趣的<br>可以發現有個 domain 在網頁上<br>可以把這個在自己機器上的 <code>/etc/hosts</code> 加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.209    doctors.htb</span><br></pre></td></tr></table></figure></p>
+<p>然後連上去看看，有登入有註冊  </p>
+<h1 id="0x03-尋找可攻擊的點"><a href="#0x03-尋找可攻擊的點" class="headerlink" title="0x03 尋找可攻擊的點"></a>0x03 尋找可攻擊的點</h1><p>這邊我卡了一段時間<br>筆記一下幾點  </p>
 <ul>
-<li><strong>Bind Python and C by StarNight</strong><ul>
-<li>這個講者講的內容我覺得值得一個放入議程裡面</li>
+<li>不是有登入頁面就有機會 SQL injection</li>
+<li>註冊 admin 帳號不一定會有用</li>
+<li>想撞管理員密碼還是要看狀況</li>
 </ul>
-</li>
-<li><strong>後山大開源計畫</strong><ul>
-<li>東部學生資訊社團熱招生中 XD</li>
+<p>後來是遵循正常的註冊登入流程<br>發現進去之後是個留言板<br>直覺反應是 XSS  </p>
+<p>就有機會可以反連個 shell 回來</p>
+<p><img src="https://i.imgur.com/tFvuWTi.png" alt=""></p>
+<h1 id="0x04-尋找使用者密碼-Get-root-shell"><a href="#0x04-尋找使用者密碼-Get-root-shell" class="headerlink" title="0x04 尋找使用者密碼 + Get root shell"></a>0x04 尋找使用者密碼 + Get root shell</h1><p>這邊爬了一下 splunk 的洞<br>沒意外的話是 <a href="https://airman604.medium.com/splunk-universal-forwarder-hijacking-5899c3e0e6b2" target="_blank" rel="noopener">Splunk Universal Forwarder Hijacking</a></p>
+<p>雖然說有 shell 了<br>但是要利用的話需要一組可以 ssh 到這台機器帳號密碼</p>
+<p>根據 <code>home</code> 目錄可以看到 username<br>但是密碼部分我覺得實在是有點腦洞 …<br>總之爬 log 爬到什麼密碼就是什麼密碼！</p>
+<p>然後有爬到密碼，配上前面提到的洞<br>就可以輕鬆拿到 root shell 了</p>
+<p><img src="https://i.imgur.com/3Ycah8h.png" alt=""></p>
+<p>有 root shell 拿 user.txt 也是剛剛好</p>
+<h1 id="0x05-小記"><a href="#0x05-小記" class="headerlink" title="0x05 小記"></a>0x05 小記</h1><ul>
+<li>XSS 還是可以做反連 shell 回來的</li>
+<li>猜密碼什麼得太痛苦了</li>
+<li>當有服務跑在上面就有機會有可以利用的漏洞，多 google 保平安</li>
+<li>我真的沒搞懂過 Hack the box 送 hash 的機制 …</li>
 </ul>
-</li>
-<li><strong>三分鐘教阿嬤學會打中文</strong><ul>
-<li>主題很有趣，擺攤的時候被攤位的裝飾有點嚇到，一時之間沒有把攤位跟這場 LT 連在一起</li>
-</ul>
-</li>
-<li><strong>傳統產業的開源殉道者 by derek</strong><ul>
-<li>聽了我都想哭了，在老闆眼中開源軟體 = 免費 QQ</li>
-</ul>
-</li>
-<li><strong>TIH打一下廣告～</strong><ul>
-<li><a href="https://www.facebook.com/coscupbroright?fref=ts" target="_blank" rel="noopener">對對哥</a></li>
-</ul>
-</li>
-<li><strong>雲端巨量資料物聯網深度學習文化創意產業之前進吧！高捷少女</strong><ul>
-<li>用說的有點難，直接上影片最快XD</li>
-</ul>
-</li>
-</ul>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BEDLV5Axel0" frameborder="0" allowfullscreen></iframe>
-
-<hr>
-<h1 id="After-COSCUP"><a href="#After-COSCUP" class="headerlink" title="After COSCUP"></a>After COSCUP</h1><p>首先是要謝謝線路組的各位前輩們，對我真的是十分的照顧，我在這三天雖然有點累但是很開心 :D</p>
-<p>能加入線路組真的是一件很棒很棒的事情</p>
-<p>今年的 COSCUP 很棒，很好玩，謝謝辛苦的工作人員們！</p>
 
       
     </div>
@@ -309,9 +274,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/coscup/">coscup</a>
+              <a href="/tags/writeup/">writeup</a>
             
-              <a href="/tags/cprteam/">cprteam</a>
+              <a href="/tags/hackthebox/">hackthebox</a>
             
           </div>
         
@@ -319,15 +284,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016-01-04-csp-game02-writeup/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">[電安CSP] 2015 金盾 Game02 writeup</span>
-        <span class="prev-text nav-mobile">Last Post</span>
-      </a>
     
-    
-      <a class="next" href="/2015-08-05-Kaohsiung-Kenting-Travel/">
-        <span class="next-text nav-default">夜衝墾丁摸海膽</span>
+      <a class="next" href="/2019-05-10-travel-to-europe-05/">
+        <span class="next-text nav-default">荷蘭與比利時的奇幻之旅 0x04</span>
         <span class="prev-text nav-mobile">Next Post</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -451,9 +410,9 @@
   
   <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://freetsubasa.github.io/2015-08-17-COSCUP2015/';
-        this.page.identifier = '2015-08-17-COSCUP2015/';
-        this.page.title = 'COSCUP 2015 一點心得';
+        this.page.url = 'http://freetsubasa.github.io/2021-01-31-hack-the-box-doctor/';
+        this.page.identifier = '2021-01-31-hack-the-box-doctor/';
+        this.page.title = 'Hack the Box 筆記 - Doctor';
     };
     (function() {
     var d = document, s = d.createElement('script');
