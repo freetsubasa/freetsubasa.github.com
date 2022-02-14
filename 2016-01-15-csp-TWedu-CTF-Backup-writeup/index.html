@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>[電安CSP] 2015 TW.edu CTF Backup writeup | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="12345Description  You got a encrypted backup file of Snoopy&amp;#x27;s website.  Can you decrypt it without the password?Hint  It&amp;#x27;s famous. Google it!
+
+首先題目會給你一個需要密碼的 zip 檔案，裡面會有三個檔案，分別為 bootstrap-3.3.6-dist、index.html、snoopy.css"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[電安CSP] 2015 TW.edu CTF Backup writeup"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> [電安CSP] 2015 TW.edu CTF Backup writeup</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line">  You got a encrypted backup file of Snoopy&#x27;s website.</span><br><span class="line">  Can you decrypt it without the password?</span><br><span class="line">Hint</span><br><span class="line">  It&#x27;s famous. Google it!</span><br></pre></td></tr></table></figure>
+
+<p>首先題目會給你一個需要密碼的 zip 檔案，裡面會有三個檔案，分別為 <code>bootstrap-3.3.6-dist</code>、<code>index.html</code>、<code>snoopy.css</code></p>
+<span id="more"></span>
+
+<p><img src="http://i.imgur.com/PNZU2dS.png"></p>
+<p>印象中有在 AIS3 pre-exam 上面做過一模一樣的題目，所以直覺就想到了 <a target="_blank" rel="noopener" href="https://www.unix-ag.uni-kl.de/~conrad/krypto/pkcrack.html">pkcrack</a> 這東西 XD</p>
+<p>所以先去 bootstrap 的官網上把 <code>bootstrap-3.3.6-dist</code> 載回來，在裡面任選一個檔案出來，像是 <code>bootstrap.css</code> 之類的檔案<br>把他壓縮成 .zip 檔案</p>
+<p>然後因為 pkcrack 需要兩個檔案的壓縮率是一樣的，所以在壓縮的過程中要注意一下，我就是沒注意到才多花了半個小時在查是不是 <code>backup.zip</code> 檔案有毀損我要先補 … orz</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unzip -v filename</span><br></pre></td></tr></table></figure>
+
+<p>可以查看檔案的壓縮率</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ zip -0 bootstrap.css.zip bootstrap.css</span><br></pre></td></tr></table></figure>
+
+<p><code>-0 ~ 9 </code> 表示壓縮等級不同，要調一下這個數字確保兩個檔案的壓縮率會是一樣的，不然只會像我一樣耍蠢</p>
+<p><img src="http://imgur.com/o6XBbZz.png"></p>
+<p>這時候你就會有 <code>backup.zip</code>、<code>bootstrap.css.zip</code>跟 這兩份壓縮檔，把 pkcrack 從網站下載下來編譯過後，就可以準備解這一題了 XD</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./pkcrack -C backup.zip -c bootstrap-3.3.6-dist/css/bootstrap.css -P bootstrap.css.zip -p bootstrap.css -d out.zip -a</span><br></pre></td></tr></table></figure>
+
+<p>順利的話就是放給他跑，跑完的話打開 <code>out.zip</code> 裡面的 <code>index.html</code> 上面就會有 flag 了</p>
+<p><img src="http://imgur.com/rVCJ6Bl.png"></p>
+<p><code>Flag is CTF&#123;kn0wn_pl41n_73x7_4774ck_15_50_73rr1bl3&#125;</code></p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2016-01-15-csp-TWedu-CTF-Backup-writeup/" class="leancloud-visitors view" data-flag-title="[電安CSP] 2015 TW.edu CTF Backup writeup">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2016-01-17-csp-TWedu-ctf-eve-writeup/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016-01-04-csp-game02-writeup/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-01-15 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/write-up/">write up<span>6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/homework/">homework<span>7</span></a></li> <li><a href="/tags/writeup/">writeup<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

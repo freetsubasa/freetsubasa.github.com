@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>NA 作業二 | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="寫在前面對 Markdown 很不熟，邊寫邊練紀錄一下我在交大 NA 課堂上的作業"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="NA 作業二"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> NA 作業二</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h1><p>對 Markdown 很不熟，邊寫邊練<br>紀錄一下我在交大 NA 課堂上的作業</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="需要技能"><a href="#需要技能" class="headerlink" title="需要技能"></a>需要技能</h1><ul>
+<li>DHCP</li>
+<li>NAT</li>
+<li>Firewall</li>
+<li>Proxy</li>
+</ul>
+<h1 id="作業要求："><a href="#作業要求：" class="headerlink" title="作業要求："></a>作業要求：</h1><ul>
+<li>Server<ul>
+<li>OS 必須是 Unix-based</li>
+<li>當作是 DHCP 跟 NAT 的 Server</li>
+<li>Gatway</li>
+</ul>
+</li>
+<li>Host A<ul>
+<li>作業系統不拘</li>
+<li>可以藉由 DHCP 拿到一個 private IP</li>
+</ul>
+</li>
+<li>Host B<ul>
+<li>FTP Server</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="環境架設"><a href="#環境架設" class="headerlink" title="環境架設"></a>環境架設</h1><h2 id="三台虛擬機"><a href="#三台虛擬機" class="headerlink" title="三台虛擬機"></a>三台虛擬機</h2><p>  Server 我選了最近剛出的 <a target="_blank" rel="noopener" href="http://www.ubuntu.com/download/server/">Ubuntu 14.04</a>，下面的 HostA 為 CentOS6 桌面版，HostB 也同樣為 Ubuntu 14.04 server 版。原先 HostA 是想要用 CentOS 的，但是 SElinux 太難搞，就臨時決定換成 Ubuntu 了</p>
+<h2 id="Server-NA0"><a href="#Server-NA0" class="headerlink" title="Server - NA0"></a>Server - NA0</h2><p>  這台機器會被當成 DHCP 以及 NAT 的 Server，所以我們需要讓這台機器有兩張網卡可以使用。一張對內，一張對外。</p>
+<p><img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/AEDp2kbQJLLUm14pawgl_Screen%20Shot%202014-05-02%20at%20%E4%B8%8A%E5%8D%885.01.41.png" alt="Screen Shot 2014-05-02 at 上午5.01.41.png">   </p>
+<p><img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/lDBV0s2MQ8CFt0vON8lm_Screen%20Shot%202014-05-02%20at%20%E4%B8%8A%E5%8D%885.01.51.png" alt="Screen Shot 2014-05-02 at 上午5.01.51.png"></p>
+<p>安裝過程就省略掉，但是記得安裝時記得按 Enter 不要按太快，不然介面選成中文一進去會亂碼，還要調整，很不方便。<br>安裝完後，開機，登入，把自己變成 root 等等做事情會比較方便</p>
+<p>  <img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/s6rAa46QRUe0n7x3VsUu_Screen%20Shot%202014-05-02%20at%20%E4%B8%8A%E5%8D%884.59.45.png" alt="Screen Shot 2014-05-02 at 上午4.59.45.png"></p>
+<p>然後安裝 isc-dhcp-server 這個套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install isc-dhcp-server</span><br></pre></td></tr></table></figure>
+<p>安裝完畢之後去修改 &#x2F;etc&#x2F;dhcp&#x2F;dhcp.conf 這個檔案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/dhcp/dhcp.conf</span><br></pre></td></tr></table></figure>
+
+<p>這個檔案是 DHCP 的設定檔，你想要發的 IP 從哪裡到哪裡就是在這裡設定的，就照著說明文件寫就好了</p>
+<p><img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/K3MqxnpwQU2ppdu11BhD_Screen%20Shot%202014-05-02%20at%20%E4%B8%8A%E5%8D%885.16.50.png" alt="Screen Shot 2014-05-02 at 上午5.16.50.png"></p>
+<p>修改完畢之後去 <code>/etc/default/isc-dhcp-server</code> 這個檔案修改你要做 DHCP 的網卡 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/default/isc-dhcp-server </span><br></pre></td></tr></table></figure>
+
+<p><img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/VbsWpNvITn6PZPK9t2yO_Screen%20Shot%202014-05-02%20at%20%E4%B8%8A%E5%8D%885.19.15.png" alt="Screen Shot 2014-05-02 at 上午5.19.15.png"></p>
+<p>像我是拿 en0 這張網卡當作要發 DHCP 的介面，如果有很多的話用空格分開就可以了<br>設定都完成之後，直接重啟 DHCP 這個服務就可以囉</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service isc-dhcp-server restart </span><br></pre></td></tr></table></figure>
+
+<p>這樣子他就會動啦，要看 log 的話可以去 <code>/var/log/syslog</code> 裡面去看<br>我接下來是弄 NAT，但是根據強者我閃光表示：「你應該先弄 NAT 比較再來弄 DHCP 比較好。」但是我做都做了，不過我覺得兩個誰先誰後應該都差不多（吧）</p>
+<p>首先先去你的 &#x2F;etc&#x2F;network&#x2F;interfaces 裡面修改你的網路介面設定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/4X0KBuRTQcOsZutVrF7b_Screen%20Shot%202014-05-02%20at%20%E4%B8%8A%E5%8D%885.33.04.png" alt="Screen Shot 2014-05-02 at 上午5.33.04.png"></p>
+<p>我的 eth1 是對外的網卡，所以要有一個可以動的 public IP ，eth0 是做 DHCP 的網卡，拿你的 gateway 做你的 IP</p>
+<p>作業裡面有一對關於規則的要求，什麼東西是 ping 不到連不進去之類的啊，所以就用了 iptables 實作 NAT Server 這件事情，沒有 iptables 的話先去裝個。然後因為規則很多，所以直接寫在 <code>/etc/rc.local</code> 裡面。</p>
+<p>關於 NAT 最重要的是這幾行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span><br><span class="line">iptables -A FORWARD -i eth1 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<p>第一行讓你的 Server 具有 router 的能力，剩下的三行是進行封包偽裝。輸入完畢執行 <code>/etc/rc.local</code> 之後，你底下的兩台機器就也可以上網了哦 ._.&#x2F;</p>
+<h2 id="HostA-CentOS"><a href="#HostA-CentOS" class="headerlink" title="HostA - CentOS"></a>HostA - CentOS</h2><p>  虛擬機網卡設定要選擇「內部網路」，名稱要跟前面設定的 Server 內部網路一樣名稱</p>
+<p><img src="http://user-image.logdown.io/user/7361/blog/7297/post/195909/dImCAAqSQACVCWnF4YbM_Screen%20Shot%202014-05-02%20at%20%E4%B8%8B%E5%8D%884.17.47.png" alt="Screen Shot 2014-05-02 at 下午4.17.47.png"></p>
+<p>就純粹安裝 <a target="_blank" rel="noopener" href="http://www.centos.org/download/">CentOS</a> 上去，然後裝個 <a target="_blank" rel="noopener" href="https://filezilla-project.org/">filezilla</a> ，頂多 <code>ifconfig</code> 確認自己的 IP 是對的，確定自己可以上網</p>
+<h2 id="HostB-Ubuntu-Server-14-04"><a href="#HostB-Ubuntu-Server-14-04" class="headerlink" title="HostB - Ubuntu Server 14.04"></a>HostB - Ubuntu Server 14.04</h2><p>虛擬機的網卡設定跟 HostA 相同，一樣是選擇內部網路<br>接下來安裝 VSFTP </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>/etc/vsftpd.conf</code> 檔案內容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>改完重開 service 就搞定，收工</p>
+<hr>
+<h1 id="寫在之後"><a href="#寫在之後" class="headerlink" title="寫在之後"></a>寫在之後</h1><p>Demo 前記得燒香拜拜，記得拜託 VMware 不要死掉<br>不過其實我沒 Demo 到就是了 （菸）</p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2014-04-27-na-homework-2/" class="leancloud-visitors view" data-flag-title="NA 作業二">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2014-08-26-onepiece-dating-with-my-sister/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/hello-world/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2014-04-27 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/作業/">作業<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/NA/">NA<span>1</span></a></li> <li><a href="/tags/homework/">homework<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

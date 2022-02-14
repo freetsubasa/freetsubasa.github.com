@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>[電安CSP] 2015 金盾 Game11 writeup | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="有一張叫做 ImageHide.bmp 的圖片跟一個需要密碼的壓縮檔 Wep-Crack.rar先把圖片丟進 ImageHide 這隻程式裡面，可以得到一串文字"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[電安CSP] 2015 金盾 Game11 writeup"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> [電安CSP] 2015 金盾 Game11 writeup</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>有一張叫做 <code>ImageHide.bmp</code> 的圖片跟一個需要密碼的壓縮檔 <code>Wep-Crack.rar</code><br>先把圖片丟進 <code>ImageHide</code> 這隻程式裡面，可以得到一串文字</p>
+<span id="more"></span>
+
+<p><img src="/images/Game11/1.png"></p>
+<p>看到裡面有重複出現 <code>13</code> 這個數字猜測是用 <code>ROT-13</code> ，放到 online tool 跑一下就可以得到 zip 檔案的密碼 </p>
+<p><img src="/images/Game11/2.png"></p>
+<p><code>The password is wooooohaaaaa</code> </p>
+<p>拿這串密碼去解壓縮 <code>Wep-Crack.rar</code> 這個檔案裡面會有四個檔案分別是 <code>wepp-01.cap</code>、<code>wepp-01.csv</code>、<code>wepp-01.kismet.csv</code>、<code>wepp-01.kismet.netxml</code><br>然後聽說要爆無線網路的密碼，利用 <a target="_blank" rel="noopener" href="http://www.aircrack-ng.org/">aircrack-ng</a> 去解 WEP 密碼</p>
+<p><img src="/images/Game11/3.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ aircrack-ng -b 54:B8:0A:0D:10:38 wepp-01.cap</span><br></pre></td></tr></table></figure>
+
+<p>參數部分可以參考他們的<a target="_blank" rel="noopener" href="http://www.aircrack-ng.org/doku.php?id=aircrack-ng">說明書</a></p>
+<p><img src="/images/Game11/4.png"></p>
+<p>就得到密碼是為 <code>09:73:55:90:37</code> 然後利用這組密碼回去解封包</p>
+<p><img src="/images/Game11/5.png"></p>
+<p>在 wireshark 上方工具列的 Edit -&gt; preferences &gt; Protocols &gt; IEEE 802.11 把剛剛拿到的密碼加進去，記得要把 Enable decryption 這個選項打勾，不然會跟我一樣耍笨很久 QQ</p>
+<p>題目說要找 104 人力銀行的登入帳號密碼，密碼就是 flag<br>利用 fliter 的方式過濾封包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.dst == 122.147.53.12  # 122.147.53.12 是 104 的 ip</span><br></pre></td></tr></table></figure>
+
+<p>然後用搜尋字串的方式找 password 在哪裡，就可以得到 flag 了</p>
+<p><img src="/images/Game11/6.png"></p>
+<p><code>The flag is Teem0</code></p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2016-01-21-csp-game11-writeup/" class="leancloud-visitors view" data-flag-title="[電安CSP] 2015 金盾 Game11 writeup">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2016-01-19-csp-TWedu-ctf-misc-writeup/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016-01-17-csp-TWedu-ctf-eve-writeup/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-01-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/write-up/">write up<span>6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/homework/">homework<span>7</span></a></li> <li><a href="/tags/writeup/">writeup<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

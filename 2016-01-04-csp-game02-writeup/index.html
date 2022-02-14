@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>[電安CSP] 2015 金盾 Game02 writeup | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="資料夾打開會發現裡面有兩個檔案 pic.jpg、flag 以及 READMEREADME 裡面大概的內容是
+12345678Xmas is great, every kid loves it.Often, kids get lots of gifts.Really, truly happy.However, sometimes Santa plays little tricks.Kids need to find out where the Santa placed the gifts (or decode the flag).Please help the kids to find the gifts.The clue Santa left is: Sometimes fortune is far from reach but near at __hand__.See pic.jpg for further investigation."> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[電安CSP] 2015 金盾 Game02 writeup"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> [電安CSP] 2015 金盾 Game02 writeup</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>資料夾打開會發現裡面有兩個檔案 <code>pic.jpg</code>、<code>flag</code> 以及 <code>README</code><br>README 裡面大概的內容是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Xmas is great, every kid loves it.</span><br><span class="line">Often, kids get lots of gifts.</span><br><span class="line">Really, truly happy.</span><br><span class="line">However, sometimes Santa plays little tricks.</span><br><span class="line">Kids need to find out where the Santa placed the gifts (or decode the flag).</span><br><span class="line">Please help the kids to find the gifts.</span><br><span class="line">The clue Santa left is: Sometimes fortune is far from reach but near at __hand__.</span><br><span class="line">See pic.jpg for further investigation.</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>然後有一張圖長這樣</p>
+<p><img src="/images/Game02/pic.jpg"></p>
+<p>先看一下 <code>flag</code> 這個檔案，發現裡面一堆 <code>xray</code> 跟亂碼<br>聽說是用 xor 加密</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ xortools flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Game02/1.png"></p>
+<p>看起來很有可能，繼續試試看 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ xortools -l 4 -c 00 flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Game02/2.png"></p>
+<p>好吧，看起來 key 就是 xray ，原來圖片的意義是在這裡啊 …<br>然後進去 <code>xortools_out</code> 這個資料夾裡面會看到一個檔案叫做 <code>0.out</code><br>發現他是個被壓縮的檔案，就把他解壓縮吧</p>
+<p><img src="/images/Game02/3.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ tar -xf 0.out</span><br></pre></td></tr></table></figure>
+
+<p>會得到一個新的叫做 <code>flag</code> 的資料夾，裡面會有 <code>README</code>以及一張新的圖片叫做 <code>THE-WORLD-FLAG.jpg</code>，<code>README</code> 有給我們新的提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Somebody please tell me who __made__ those flags?</span><br><span class="line">See THE-WORLD-FLAG.jpg for more information.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Game02/4.png"></p>
+<p>然後決定 strings 一下看看 flag 有沒有躲在裡面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ strings strings THE-WORLD-FLAG.jpg |grep flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Game02/5.png"></p>
+<p>就得到 flag 了 \0w0&#x2F;</p>
+<p><code>The flag is : kidsarehappynow</code></p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2016-01-04-csp-game02-writeup/" class="leancloud-visitors view" data-flag-title="[電安CSP] 2015 金盾 Game02 writeup">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2016-01-15-csp-TWedu-CTF-Backup-writeup/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2015-08-17-COSCUP2015/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-01-04 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/write-up/">write up<span>6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/homework/">homework<span>7</span></a></li> <li><a href="/tags/writeup/">writeup<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

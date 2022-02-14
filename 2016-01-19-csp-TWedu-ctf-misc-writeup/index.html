@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>[電安CSP] 2015 TWedu CTF Russian Dolls &amp; zxcvb &amp; Overthewire writeup | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="Russian Dolls123456Description  You find a strange file called russian_dolls_v2 in Snoopy&amp;#x27;s computer. Can you find the hidden secret?  MD5(russian_dolls_v2): fc3f675b06533004772135bee67d5ecdHint  &amp;quot;file&amp;quot; command is your good friend.
+
+其實這題就是把東西拿去給 7-zip 解壓縮，7-zip 解壓縮失敗再用 file 看檔案類型就好 (?)"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[電安CSP] 2015 TWedu CTF Russian Dolls &amp; zxcvb &amp; Overthewire writeup"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> [電安CSP] 2015 TWedu CTF Russian Dolls &amp; zxcvb &amp; Overthewire writeup</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Russian-Dolls"><a href="#Russian-Dolls" class="headerlink" title="Russian Dolls"></a>Russian Dolls</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line">  You find a strange file called russian_dolls_v2 in Snoopy&#x27;s computer. Can you find the hidden secret?</span><br><span class="line">  MD5(russian_dolls_v2): fc3f675b06533004772135bee67d5ecd</span><br><span class="line"></span><br><span class="line">Hint</span><br><span class="line">  &quot;file&quot; command is your good friend.</span><br></pre></td></tr></table></figure>
+
+<p>其實這題就是把東西拿去給 7-zip 解壓縮，7-zip 解壓縮失敗再用 <code>file</code> 看檔案類型就好 (?)</p>
+<span id="more"></span>
+
+<p>解壓縮 <code>russian_dolls_v2.zip</code> 會得到 <code>level1</code> 這個檔案，再解壓縮會得到一個 base64 處理過的檔案，然後第三層是 <code>gzip</code> 檔，第四層是 <code>bzip</code>，第五層是 <code>lzip</code>，第六層是 <code>tar</code>，第七層是 <code>xz</code>，最後會得到一個文字檔</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PGS&#123;Cnpxrq!Cnpxrq!Cnpxrq&#125;</span><br></pre></td></tr></table></figure>
+<p>前三個字應該是 <code>CTF</code>，所以就拿去 <a target="_blank" rel="noopener" href="http://www.rot13.com/">rot13 線上工具</a> 就可以得到 flag 了</p>
+<p><code>CTF&#123;Packed!Packed!Packed&#125;</code></p>
+<hr>
+<h1 id="zxcvb"><a href="#zxcvb" class="headerlink" title="zxcvb"></a>zxcvb</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line">  John doesn&#x27;t like zxcvb :((</span><br><span class="line">  Yp4U1;IKY_XX,dokt&quot;alh&quot;HH.soav+</span><br><span class="line"></span><br><span class="line">Hint</span><br><span class="line">  crypto slides will help you </span><br></pre></td></tr></table></figure>
+
+<p>他說他討厭 zxcvb ，這在鍵盤上剛好連成一排，所以應該說他討厭用 QWERTY 鍵盤，所以他應該是使用 Dvorak 鍵盤，有 <a target="_blank" rel="noopener" href="http://wbic16.xedoloh.com/dvorak.html">online tool</a> 可以用</p>
+<p><code>Fl4G1sCTF&#123;QQwerty_and_DDvorak&#125;</code></p>
+<hr>
+<h1 id="Overthewire"><a href="#Overthewire" class="headerlink" title="Overthewire"></a>Overthewire</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line">  http://overthewire.hackme.cc/</span><br><span class="line"></span><br><span class="line">Hint</span><br><span class="line">  這種漏洞的名字叫做變量覆蓋</span><br></pre></td></tr></table></figure>
+
+<p>連到網站可以看到 <code>flag.php</code>、<code>overthewire.txt</code>、<code>overthewire.php</code> 三個檔案，然後看到 overthewire.txt 裡面是段 php code </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// preparing </span></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$_REQUEST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>) &#123;</span><br><span class="line">        <span class="variable">$$key</span> = <span class="variable">$value</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( <span class="variable">$_SERVER</span>[<span class="string">&#x27;REMOTE_ADDR&#x27;</span>] == <span class="string">&#x27;127.0.0.1&#x27;</span> )&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;there is no space like 127.0.0.1&#x27;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段讓 <code>$_SERVER[&#39;REMOTE_ADDR&#39;]</code> 可以覆蓋掉</p>
+<p><code>http://overthewire.hackme.cc/overthewire.php?_SERVER[REMOTE_ADDR]=127.0.0.1</code></p>
+<p>這樣就可以得到 flag 了</p>
+<p><code>CTF&#123;the_world_is_not_beautiful_therefore_it_is&#125;</code></p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2016-01-19-csp-TWedu-ctf-misc-writeup/" class="leancloud-visitors view" data-flag-title="[電安CSP] 2015 TWedu CTF Russian Dolls &amp; zxcvb &amp; Overthewire writeup">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2016-08-29-AIS3-Final-examw/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016-01-21-csp-game11-writeup/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-01-22 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/write-up/">write up<span>6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/homework/">homework<span>7</span></a></li> <li><a href="/tags/writeup/">writeup<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

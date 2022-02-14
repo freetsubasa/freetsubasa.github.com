@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>SA 作業一 | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="寫在前面結果我還是很不知死活的去修了交大的 SA 跟 程式安全寫寫筆記 XD"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="SA 作業一"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> SA 作業一</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h1><p>結果我還是很不知死活的去修了交大的 SA 跟 程式安全<br>寫寫筆記 XD</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<li>Install FreeBSD 9.2-RELEASE<ul>
+<li>i386</li>
+<li>amd64</li>
+</ul>
+</li>
+<li>Add a user and a group<ul>
+<li>Group name should be identical to your username</li>
+<li>User should also be in the ‘wheel’ group</li>
+</ul>
+</li>
+<li>Set your machine to current time zone and adjust current time</li>
+<li>Enable and run sshd</li>
+</ul>
+<hr>
+<h1 id="Submission"><a href="#Submission" class="headerlink" title="Submission"></a>Submission</h1><p>Login with the user you created</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ fetch http://cs.nctu.edu.tw/~shunyi/sahw1-1.sh</span><br><span class="line">$ sh ~/sahw1-1.sh</span><br></pre></td></tr></table></figure>
+
+<p>Key in your student ID while see<br>  “Please input your student ID: ”<br>then press Enter<br>Check <a target="_blank" rel="noopener" href="http://nasa.cs.nctu.edu.tw/sysadm/hw1-1">http://nasa.cs.nctu.edu.tw/sysadm/hw1-1</a> for your submission.</p>
+<hr>
+<h1 id="作業"><a href="#作業" class="headerlink" title="作業"></a>作業</h1><h2 id="安裝部分"><a href="#安裝部分" class="headerlink" title="安裝部分"></a>安裝部分</h2><p>這次直接開 VMare 做事，感謝小飛機大大的贊助。<br>安裝部分就一直按 <code>next</code> <code>ok</code> 之類的就好，反正我沒有要調多大的設定，或是切硬碟之類的</p>
+<h2 id="新增使用者跟群組"><a href="#新增使用者跟群組" class="headerlink" title="新增使用者跟群組"></a>新增使用者跟群組</h2><p>一開始安裝他就會問你說要不要新增使用者跟群組，就按照他的說明做下來<br>記得把自己加進 <code>wheel</code> 裡面，之後要新增的話，就直接打 <code>sudo adduser</code> 就好了</p>
+<h2 id="時間校正"><a href="#時間校正" class="headerlink" title="時間校正"></a>時間校正</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ntpdate clock.stdtime.gov.tw</span><br></pre></td></tr></table></figure>
+
+<h2 id="開啟-SSH-服務"><a href="#開啟-SSH-服務" class="headerlink" title="開啟 SSH 服務"></a>開啟 SSH 服務</h2><p>一開始的的 configure 就可以設定 ssh 服務，如果想要事後補設定也很簡單</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ vim /etc/rc.conf</span><br></pre></td></tr></table></figure>
+<p>加上 <code>ssh_enable=YES</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ /etc/rc.d/sshd start</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他設定"><a href="#其他設定" class="headerlink" title="其他設定"></a>其他設定</h1><h2 id="DNS-設定"><a href="#DNS-設定" class="headerlink" title="DNS 設定"></a>DNS 設定</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 8.8.4.4</span><br><span class="line">nameserver 140.113.235.1  #交大DNS Server</span><br></pre></td></tr></table></figure>
+
+<h2 id="Change-Mirror"><a href="#Change-Mirror" class="headerlink" title="Change Mirror"></a>Change Mirror</h2><h3 id="ports-mirror"><a href="#ports-mirror" class="headerlink" title="ports mirror"></a>ports mirror</h3><p>開啟 <code>/etc/make.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MASTER_SITE_BACKUP?= \</span><br><span class="line">  ftp://freebsd.cs.nctu.edu.tw/pub/FreeBSD/ports/distfiles/$&#123;DIST_SUBDIR&#125;/\</span><br><span class="line">  ftp://ftp.tw.freebsd.org/pub/FreeBSD/ports/distfiles/$&#123;DIST_SUBDIR&#125;/</span><br><span class="line">  MASTER_SITE_OVERRIDE?=  $&#123;MASTER_SITE_BACKUP&#125;</span><br><span class="line">  WITH_PKGNG= yes</span><br></pre></td></tr></table></figure>
+
+<h3 id="pkgng-mirror"><a href="#pkgng-mirror" class="headerlink" title="pkgng mirror"></a>pkgng mirror</h3><p>開啟 <code>/etc/portsnap.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SERVERNAME=portsnap.tw.FreeBSD.org</span><br></pre></td></tr></table></figure>
+
+<p>然後輸入以下指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">~$ portsnap fetch extract</span><br><span class="line">~$ pkg</span><br><span class="line">   The package management tool is not yet installed on your system.</span><br><span class="line">   Do you want to fetch and install it now? [y/N]: Y</span><br><span class="line">~$ pkg2ng</span><br><span class="line">~$ <span class="built_in">mkdir</span> -p /usr/local/etc/pkg/repos</span><br><span class="line">~$ vi /usr/local/etc/pkg/repos/FreeBSD.conf</span><br><span class="line">   FreeBSD: &#123;</span><br><span class="line">   url: <span class="string">&quot;pkg+http://pkg.FreeBSD.org/<span class="variable">$&#123;ABI&#125;</span>/latest&quot;</span>,</span><br><span class="line">   mirror_type: <span class="string">&quot;srv&quot;</span>,</span><br><span class="line">   enabled: <span class="string">&quot;yes&quot;</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-portmaster"><a href="#Install-portmaster" class="headerlink" title="Install portmaster"></a>Install portmaster</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~$ portmaster /usr/ports/security/sudo</span><br><span class="line">~$ vipw</span><br><span class="line">~$ usermod -aG wheel your_username</span><br><span class="line">~$ visudo</span><br><span class="line">   %wheel ALL=(ALL) ALL</span><br><span class="line">~$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-Sudo"><a href="#Install-Sudo" class="headerlink" title="Install Sudo"></a>Install Sudo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~$ portmaster /usr/ports/security/sudo</span><br><span class="line">~$ vipw</span><br><span class="line">~$ usermod -aG wheel your_username</span><br><span class="line">~$ visudo</span><br><span class="line">   %wheel ALL=(ALL) ALL</span><br><span class="line">~$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Istall-vim"><a href="#Istall-vim" class="headerlink" title="Istall vim"></a>Istall vim</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo portmaster /usr/ports/editor/vim</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="最後閒聊"><a href="#最後閒聊" class="headerlink" title="最後閒聊"></a>最後閒聊</h1><p>感謝 Davy 大大提供的文件，話說 AHQ 輸了 O_Q<br>王爺的夢哪時候才會實現呢，好想聽到全場大喊 Read My Name 哦</p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2014-09-22-SA-homework-1/" class="leancloud-visitors view" data-flag-title="SA 作業一">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2015-08-05-Kaohsiung-Kenting-Travel/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2014-08-26-onepiece-dating-with-my-sister/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-07-20 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/作業/">作業<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/homework/">homework<span>7</span></a></li> <li><a href="/tags/SA/">SA<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

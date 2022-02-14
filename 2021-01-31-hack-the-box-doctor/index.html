@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Hack the Box 筆記 - Doctor | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="0x00 寫在前面前陣子因為一些原因開始想刷些題目維持一下自己對一些資安技術的敏感度所以就挑了 Hack the Box 的系列當成某種作業來進行  
+因為根據規則好像不能寫完整的 walkthrough所以基本上這系列（如果可以寫成系列的話…）會偏比較筆記的形式所以有可能只有我看得懂（逃）"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Hack the Box 筆記 - Doctor"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Hack the Box 筆記 - Doctor</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="0x00-寫在前面"><a href="#0x00-寫在前面" class="headerlink" title="0x00 寫在前面"></a>0x00 寫在前面</h1><p>前陣子因為一些原因開始想刷些題目<br>維持一下自己對一些資安技術的敏感度<br>所以就挑了 Hack the Box 的系列當成某種作業來進行  </p>
+<p>因為根據規則好像不能寫完整的 walkthrough<br>所以基本上這系列（如果可以寫成系列的話…）會偏比較筆記的形式<br><del>所以有可能只有我看得懂（逃）</del></p>
+<span id="more"></span>
+
+<h1 id="0x01-基本註冊-x2F-登入-x2F-vpn-config"><a href="#0x01-基本註冊-x2F-登入-x2F-vpn-config" class="headerlink" title="0x01 基本註冊&#x2F;登入&#x2F;vpn config"></a>0x01 基本註冊&#x2F;登入&#x2F;vpn config</h1><p>這個應該偏簡單，登入需要使用的 invite code F12 大法按下去就好了<br>vpn 設定的部分建議弄有桌面環境的 kali 大禮包，真的會方便很多<br>VM 的網路部分設定成 Bridge 然後用下載下來的 vpn config 直接連上應該就好了  </p>
+<h1 id="0x02-收集訊息"><a href="#0x02-收集訊息" class="headerlink" title="0x02 收集訊息"></a>0x02 收集訊息</h1><p><img src="https://i.imgur.com/si5GkPw.png"></p>
+<p>nmap 掃過一輪發現只有開 22&#x2F;80&#x2F;8089 port<br>8089 port 根據 google 的結果是 splunk 在使用的 port</p>
+<p>之後可以直接連上網頁看一看有沒有什麼有趣的<br>可以發現有個 domain 在網頁上<br>可以把這個在自己機器上的 <code>/etc/hosts</code> 加入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.209    doctors.htb</span><br></pre></td></tr></table></figure>
+<p>然後連上去看看，有登入有註冊  </p>
+<h1 id="0x03-尋找可攻擊的點"><a href="#0x03-尋找可攻擊的點" class="headerlink" title="0x03 尋找可攻擊的點"></a>0x03 尋找可攻擊的點</h1><p>這邊我卡了一段時間<br>筆記一下幾點  </p>
+<ul>
+<li>不是有登入頁面就有機會 SQL injection</li>
+<li>註冊 admin 帳號不一定會有用</li>
+<li>想撞管理員密碼還是要看狀況</li>
+</ul>
+<p>後來是遵循正常的註冊登入流程<br>發現進去之後是個留言板<br>直覺反應是 XSS  </p>
+<p>就有機會可以反連個 shell 回來</p>
+<p><img src="https://i.imgur.com/tFvuWTi.png"></p>
+<h1 id="0x04-尋找使用者密碼-Get-root-shell"><a href="#0x04-尋找使用者密碼-Get-root-shell" class="headerlink" title="0x04 尋找使用者密碼 + Get root shell"></a>0x04 尋找使用者密碼 + Get root shell</h1><p>這邊爬了一下 splunk 的洞<br>沒意外的話是 <a target="_blank" rel="noopener" href="https://airman604.medium.com/splunk-universal-forwarder-hijacking-5899c3e0e6b2">Splunk Universal Forwarder Hijacking</a></p>
+<p>雖然說有 shell 了<br>但是要利用的話需要一組可以 ssh 到這台機器帳號密碼</p>
+<p>根據 <code>home</code> 目錄可以看到 username<br>但是密碼部分我覺得實在是有點腦洞 …<br>總之爬 log 爬到什麼密碼就是什麼密碼！</p>
+<p>然後有爬到密碼，配上前面提到的洞<br>就可以輕鬆拿到 root shell 了</p>
+<p><img src="https://i.imgur.com/3Ycah8h.png"></p>
+<p>有 root shell 拿 user.txt 也是剛剛好</p>
+<h1 id="0x05-小記"><a href="#0x05-小記" class="headerlink" title="0x05 小記"></a>0x05 小記</h1><ul>
+<li>XSS 還是可以做反連 shell 回來的</li>
+<li>猜密碼什麼得太痛苦了</li>
+<li>當有服務跑在上面就有機會有可以利用的漏洞，多 google 保平安</li>
+<li>我真的沒搞懂過 Hack the box 送 hash 的機制 …</li>
+</ul>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2021-01-31-hack-the-box-doctor/" class="leancloud-visitors view" data-flag-title="Hack the Box 筆記 - Doctor">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2021-05-20-my-first-job/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019-05-10-travel-to-europe-05/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2021-01-31 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/hackthebox/">hackthebox<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/writeup/">writeup<span>7</span></a></li> <li><a href="/tags/hackthebox/">hackthebox<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

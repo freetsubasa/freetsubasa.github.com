@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>[電安CSP] 2015 TWedu CTF Eve writeup | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="12345Description  You sniffed some tcp streams from Snoopy. Can you find the secrets?Hint  1. HTTP content usually is compressed, try to decompress it.  2. wrong password!? Something will be wrong. Have you checked everything is correct?"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[電安CSP] 2015 TWedu CTF Eve writeup"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> [電安CSP] 2015 TWedu CTF Eve writeup</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Description</span><br><span class="line">  You sniffed some tcp streams from Snoopy. Can you find the secrets?</span><br><span class="line">Hint</span><br><span class="line">  1. HTTP content usually is compressed, try to decompress it.</span><br><span class="line">  2. wrong password!? Something will be wrong. Have you checked everything is correct?</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<p><img src="http://i.imgur.com/SMPG2uw.jpg"></p>
+<p>你會先得到一個封包檔，大致上掃過一次之後就打算 Export HTTP Object 出來，看起來有個 zip 檔跟一個網頁，把網頁打開就會得到第一把 flag </p>
+<p><code>CTF&#123;y0u_c4n_533_7h15_p463!y0u_4r3_7h3_pc4p_k1n6!!&#125;</code></p>
+<p><img src="http://imgur.com/Q3caxsX.jpg"></p>
+<p>底下有關於 flag2 的提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Here is a encrypted gift to Snoopy.</span><br><span class="line">password: This_is_the_passwr0d_of_zip_it_is_not_the_flag_2</span><br><span class="line">md5: 19dc2819a12d1f5863ddabe36ce7079f</span><br><span class="line">par2: </span><br><span class="line">	gift.zip.par2: cbf77a48e816d892ee3217ce896fd0e5</span><br><span class="line">	gift.zip.vol0+3.par2: 611f6b8b418899e806fbc1d0a78c7c96</span><br></pre></td></tr></table></figure>
+
+<p>剩下三個檔案分別是 <code>gift.zip</code>、<code>gift.zip.par2</code>、<code>gift.zip.vol0+3.par2</code> </p>
+<p>原本你拿到的 gift.zip 檔案的 md5 跟網頁上面給的 md5 是不一樣的，所以這個 zip 檔案應該是損毀的，然後 par2 副檔名基本上是用來修復 zip 檔案的，在網路上找個像是 <a target="_blank" rel="noopener" href="http://www.quickpar.org.uk/">QuickPar</a> 的程式就可以將 gift.zip 檔修復打開 </p>
+<p><img src="http://i.imgur.com/I5MQUE7.png"></p>
+<p>然後 gift.zip 的密碼在網頁上面有 <code>This_is_the_passwr0d_of_zip_it_is_not_the_flag_2</code>這樣就可以順利拿到第二把 flag 了 \0w0&#x2F;</p>
+<p><img src="http://imgur.com/mSTUS9F.png"></p>
+<p><code>CTF&#123;y0u_c4n_u53_par2_to_r3c0v3r_7h3_br0k3n_f1l3_n0w&#125;</code></p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2016-01-17-csp-TWedu-ctf-eve-writeup/" class="leancloud-visitors view" data-flag-title="[電安CSP] 2015 TWedu CTF Eve writeup">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2016-01-21-csp-game11-writeup/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016-01-15-csp-TWedu-CTF-Backup-writeup/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-01-17 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/write-up/">write up<span>6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/homework/">homework<span>7</span></a></li> <li><a href="/tags/writeup/">writeup<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>AIS3 2016 Final Exam CTF | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="寫在前面今年終於有時間 (?) 參加 AIS3 了
+最後的 final exam 也拿了一個還算可以的成績，就把我解掉的題目寫個筆記吧
+最後名次以及盤解題畫面"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="AIS3 2016 Final Exam CTF"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> AIS3 2016 Final Exam CTF</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="寫在前面"><a href="#寫在前面" class="headerlink" title="寫在前面"></a>寫在前面</h1><p>今年終於有時間 (?) 參加 AIS3 了</p>
+<p>最後的 final exam 也拿了一個還算可以的成績，<br>就把我解掉的題目寫個筆記吧</p>
+<p>最後名次以及盤解題畫面</p>
+<span id="more"></span>
+
+<p><img src="/images/ais3/1.png"></p>
+<hr>
+<h1 id="Web-部分"><a href="#Web-部分" class="headerlink" title="Web 部分"></a>Web 部分</h1><p>感覺這次 Web 的部分比 pre-exam 還要簡單一點</p>
+<h2 id="1-分題"><a href="#1-分題" class="headerlink" title="1 分題"></a>1 分題</h2><p>看原始碼後會找到一個叫做 db.js 的檔案</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db = [</span><br><span class="line">    &#123;<span class="attr">username</span>: <span class="string">&quot;admin&quot;</span>, <span class="attr">password</span>: <span class="string">&quot;36d3e1bc65f8b67935ae60f542abef3e55c5bbbd547854966400cc4f022566cb&quot;</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>然後前面的 js 有說這是 sha256 ，就拿去線上加解密的網頁，就會得到 admin 的密碼了 <code>!@#$%^&amp;*()_+</code></p>
+<h2 id="2-分題"><a href="#2-分題" class="headerlink" title="2 分題"></a>2 分題</h2><p>這題我想了比較久一點，一開始看 js 的時候不知道為什麼看著 <code>ret</code> 想到的是老鼠 ( 我承認我累了 )</p>
+<p>觀察了一下 login.php 的部分，會看到他是用 json 去判斷的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;db.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>(<span class="keyword">array</span>(<span class="string">&quot;ret&quot;</span>=&gt; <span class="string">&quot;1&quot;</span>, <span class="string">&quot;msg&quot;</span> =&gt; <span class="string">&quot;Success&quot;</span>));</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">err</span>(<span class="params"><span class="variable">$s</span>, <span class="variable">$hint</span> = <span class="string">&quot;&quot;</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$hint</span>)</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>(<span class="keyword">array</span>(<span class="string">&quot;ret&quot;</span>=&gt; <span class="string">&quot;0&quot;</span>, <span class="string">&quot;msg&quot;</span> =&gt; <span class="variable">$s</span>, <span class="string">&quot;hint&quot;</span> =&gt; <span class="variable">$hint</span>));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>(<span class="keyword">array</span>(<span class="string">&quot;ret&quot;</span>=&gt; <span class="string">&quot;0&quot;</span>, <span class="string">&quot;msg&quot;</span> =&gt; <span class="variable">$s</span>));</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check_form</span>(<span class="params"><span class="variable">$data</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">is_array</span>(<span class="variable">$data</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$data</span>[<span class="string">&quot;username&quot;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$data</span>[<span class="string">&quot;password&quot;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&quot;REQUEST_METHOD&quot;</span>] === <span class="string">&quot;POST&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">json_decode</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://input&quot;</span>), <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">check_form</span>(<span class="variable">$data</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// $db is defined in db.php</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$db</span> <span class="keyword">as</span> <span class="variable">$user</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$data</span>[<span class="string">&quot;username&quot;</span>] == <span class="variable">$user</span>[<span class="string">&quot;username&quot;</span>] &amp;&amp; <span class="variable">$data</span>[<span class="string">&quot;password&quot;</span>] == <span class="variable">$user</span>[<span class="string">&quot;password&quot;</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="variable">$_SESSION</span>[<span class="string">&quot;login&quot;</span>] = <span class="literal">true</span>;</span><br><span class="line">                <span class="variable">$_SESSION</span>[<span class="string">&quot;level&quot;</span>] = <span class="number">2</span>;</span><br><span class="line">                <span class="variable">$_SESSION</span>[<span class="string">&quot;username&quot;</span>] = <span class="variable">$user</span>[<span class="string">&quot;username&quot;</span>];</span><br><span class="line">                <span class="title function_ invoke__">success</span>();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_ invoke__">err</span>(<span class="string">&quot;Username or Password error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="title function_ invoke__">err</span>(<span class="string">&quot;Invalid form&quot;</span>, <span class="string">&quot;Don&#x27;t know what to do next? Get the source of login.php via sendding GET request to this page&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Don&#x27;t know what to do next?&lt;/br&gt;&lt;/br&gt; Read source of &lt;code&gt;login.php&lt;/code&gt; here: &lt;/br&gt;&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>總之，修改傳送出去的資料，原本會是 <code>&#123; &quot;username&quot; : &quot;admin&quot;, &quot;password&quot; : &quot;password&quot;&#125;</code></p>
+<p>改成 <code>&#123; &quot;username&quot; : &quot;admin&quot;, &quot;password&quot; : true&#125;</code></p>
+<p>你就可以成功以 admin 的身分登入了</p>
+<h2 id="3-分題"><a href="#3-分題" class="headerlink" title="3 分題"></a>3 分題</h2><p>感覺 AIS3 很喜歡這招 XD</p>
+<p><code>/?p=php://filter/convert.base64-encode/resource=index</code></p>
+<p>拿去 base64 decode 之後，會得到 index.php 的原始碼<br>發現會對一些特殊單字做過濾，像是 <code>flag</code>、<code>select</code>、<code>union</code> 之類的</p>
+<p>結果這題只要改成</p>
+<p><code>/?p=php://filter/convert.base64-encode/resource=%66lag</code></p>
+<p>就可以得到 flag.php 的原始碼了，我覺得 pre-exam 的麻煩多了 XDD</p>
+<hr>
+<h1 id="Misc-部分"><a href="#Misc-部分" class="headerlink" title="Misc 部分"></a>Misc 部分</h1><h2 id="1-分題-1"><a href="#1-分題-1" class="headerlink" title="1 分題"></a>1 分題</h2><p>打開 misc1.txt 會發現 <code>begin 644 quiz</code> 的文字<br>或是拿去  file 一下就會發現他是 Uuencoding ，於是拿去線上 decode 網站<br>然後你會得到一個壓縮檔，解壓縮兩次可以得到兩張圖</p>
+<p>根據題目 <code>Throw the ball to the pokemon! </code><br>將兩張圖疊在一起，調高對比度就可以看見 flag  了</p>
+<h2 id="2-分題-1"><a href="#2-分題-1" class="headerlink" title="2 分題"></a>2 分題</h2><p>把題目給的 <code>skype.apk</code> 拿去反組譯，根據題目說明 <code>What is the IP address where the malware sends data?</code><br>搜尋一下 <code>address</code> 這個單字就會得到 IP 了</p>
+<h2 id="3-分題-1"><a href="#3-分題-1" class="headerlink" title="3 分題"></a>3 分題</h2><p>這題超通靈的 (誤)</p>
+<p>首先你要先把 lime.dump 用 volatility 掛起來，看有哪些奇怪的 process<br>會得到題是說跟網頁有關</p>
+<p>再根據題目 <code>What is a suspicious string in the Android memory dump (18 characters including English letters and punctuation)?</code><br>你會得到看到有個奇怪的 domain name ，算算長度剛剛好 18 個字</p>
+<p>不用懷疑，就是他，我當初為什麼要懷疑我自己呢 QQ<br>這題我當下沒有解出來，是最後跟老師求證了一下答案，確定是這樣沒有錯 QQ</p>
+<p><code>ais3&#123;stealyourmoney.com&#125;</code></p>
+<hr>
+<h1 id="Misc-Crypto-部分"><a href="#Misc-Crypto-部分" class="headerlink" title="Misc + Crypto 部分"></a>Misc + Crypto 部分</h1><h2 id="1-分題-2"><a href="#1-分題-2" class="headerlink" title="1 分題"></a>1 分題</h2><p>根據題目敘述 <code>What is the email account of the facebook user?</code><br>把檔案下載下來直接 grep 關鍵字，我個人是搜尋 @facebook.com 啦</p>
+<p>總之，就會得到 user 的 FB 帳號了</p>
+<hr>
+<h1 id="寫在後面"><a href="#寫在後面" class="headerlink" title="寫在後面"></a>寫在後面</h1><p>剩下的題目有些真的來不及看啊 QQ<br>後來拿了名次扣除掉助教隊伍後是全區第二北區第二，感謝隊友！</p>
+<p>這幾天真的滿好玩的，各種有趣的主題，<br>也吃了人生第一次的鼎泰豐！還有第一次的永康街冰沙！XD<br>可是幾乎天天通勤好累啊 QwQ<br>整個人的身體差點出狀況，還好這幾天有睡飽，比較好一點了</p>
+<p>感謝隊友跟助教願意讓我一直問一些笨問題<br>感謝 TDoH 給我一個多的便當跟飲料，會給我食物的都是神！<br>感謝天大地大台科大讓我得到快龍 XD<br>感謝網路組提供的超快網路，一排一條光纖耶，有錢真好 QQ<br><del>對了 wifi 密碼超宅 XDD</del><br>感謝這一個禮拜以來每一個講師，當學生真的好幸福啊</p>
+<p>題外，終於看見 Charles Yang 本人惹 XDDD</p>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2016-08-29-AIS3-Final-examw/" class="leancloud-visitors view" data-flag-title="AIS3 2016 Final Exam CTF">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2016-12-31-goodbye-2016/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016-01-19-csp-TWedu-ctf-misc-writeup/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-08-29 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/write-up/">write up<span>6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/writeup/">writeup<span>7</span></a></li> <li><a href="/tags/ais3/">ais3<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>

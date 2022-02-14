@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>OSCP 的血淚史 | It&#39;s Not My Blog</title>
+  <meta name="author" content="freetsubasa">
+  
+  <meta name="description" content="0x00 寫在前面其實本來以為這張應該算滿好拿的只有題目有做 BoF 題好好拿下應該就搞定一半了
+沒想到人算不如天算OSCP 官方直接改版考試內容 …
+我整個直接原地起飛跟爆炸"> 
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="OSCP 的血淚史"/>
+  <meta property="og:site_name" content="It&#39;s Not My Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">It&#39;s Not My Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> OSCP 的血淚史</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="0x00-寫在前面"><a href="#0x00-寫在前面" class="headerlink" title="0x00 寫在前面"></a>0x00 寫在前面</h1><p>其實本來以為這張應該算滿好拿的<br>只有題目有做 BoF 題好好拿下應該就搞定一半了</p>
+<p>沒想到人算不如天算<br>OSCP 官方直接改版考試內容 …</p>
+<p>我整個直接原地起飛跟爆炸</p>
+<span id="more"></span>
+
+<h1 id="0x01-簡介、課程內容與該死的新版考試制度"><a href="#0x01-簡介、課程內容與該死的新版考試制度" class="headerlink" title="0x01 簡介、課程內容與該死的新版考試制度"></a>0x01 簡介、課程內容與該死的新版考試制度</h1><p>基礎介紹就不多提了，應該有滿多文章都有提到<br>這邊主要跟大家說說，原本的考試分配會是  </p>
+<ul>
+<li>10</li>
+<li>20</li>
+<li>20</li>
+<li>25</li>
+<li>25 (bof)</li>
+</ul>
+<p>這樣的配分<br>但是在今年的一月 OSCP 改版後變成  </p>
+<ul>
+<li>10&#x2F;10 (local.txt&#x2F;proof.txt)</li>
+<li>10&#x2F;10 (local.txt&#x2F;proof.txt)</li>
+<li>10&#x2F;10 (local.txt&#x2F;proof.txt)</li>
+<li>40 (AD)<ul>
+<li>AD Server (proof.txt)</li>
+<li>target (proof.txt)</li>
+<li>target (proof.txt)</li>
+</ul>
+</li>
+</ul>
+<p>總共會給你六台機器，有三台會是比較單純的題目，就是打進去拿 local.txt 跟 proof.txt 就好，各十分<br>對了改版之後就不一定會有 BoF 題了，我跟我同事三個梯次考有兩個人沒抽到有 BoF 的題目</p>
+<p>比較麻煩的會是 AD 這一塊，AD 部分需要全部拿下，也就是說你如果 AD 題沒過基本上就沒過了<br>AD 是<strong>不會部份給分</strong>的，所以考試的時候時間的掌握滿重要的  </p>
+<p>建議先做一兩台先把 30-40 分拿起來，先練練手感避免緊張<br>反正 AD 解完也需要 30 才能過，而且你不會知道 AD 部分你會花多久時間 XD</p>
+<h1 id="0x02-考試準備跟注意事項"><a href="#0x02-考試準備跟注意事項" class="headerlink" title="0x02 考試準備跟注意事項"></a>0x02 考試準備跟注意事項</h1><p>考試時間會是 23 hr 45 min + 24 小時內要寫好報告並上傳到指定地點<br>題外話早知道就不要改時間了，改時間之後就看到考試改版消息，然後改版前的時間全部額滿 &#x3D;&#x3D;<br>預約考試時間可以改三次，然後考試前 48 小時就不能再改了，下好離手啊  </p>
+<p>要怎麼選就看你自己習慣的活動時間了，我自己是選半夜三點開始<br>但選半夜開始的要好好注意自己的房間能不能遮陽了，睡覺還是滿重要的<br>所以考試就是會持續到隔天的凌晨兩點半，不過可以選擇提早結束考試，但此操作不可逆，要提早結束請再確認所有東西是否都完成了</p>
+<p>考前三天會寄 mail 跟你說詳細的注意事項，系統大概會讓你在考前半小時可以登入做確認  </p>
+<p>webcam 不說了是一定要有的，然後記得要帶護照（不能過期）身分證我有帶當作備用<br>然後建議半小時前就登入跟監考官做確認，因為他會要求看滿多東西的<br>例如說桌子、整個房間、桌子底下之類的</p>
+<p>VPN 連上之後也要給監考官看測試環境<br>如果是用 kali 的話應該沒什麼大問題</p>
+<h1 id="0x03-考試中的折磨與痛苦"><a href="#0x03-考試中的折磨與痛苦" class="headerlink" title="0x03 考試中的折磨與痛苦"></a>0x03 考試中的折磨與痛苦</h1><p>接下來你就會跟外界隔絕 24 小時，如果你想離開都要跟監考官說，回來也要說一聲</p>
+<p>不得不說一連上 VPN 的當下我就超想打開任一款通訊軟體找人聊天<br>對，明明就是在一個半夜三點應該沒什麼活人在的時間</p>
+<p>除了 AD 以外的題目不會太難，有做 Lab 的人應該都至少可以拿到 local.txt (10 分)<br>要不要提權拿 proo.txt 可以看看，不過以目前考試分數來看還是先以 AD 為主比較重要  </p>
+<p>AD 部分好像每個人都不太一樣，同事有三台都在同一個網段要自己找從哪一台進去比較好<br>或是像我這樣必須先打指定的那台，然後想辦法橫向移動<br>不確定哪個比較簡單，先打指定的可能會比較單純，但是就會看你能不能先突破第一台了</p>
+<p>誠心建議還是要睡覺，至少要讓大腦放空，太執著在題目上面不會得到好結果的<br>睡個四到五個小時，卡關就起來走走路，看看風景會比較好  </p>
+<p>對了建議找個可以洗澡的地方，沒洗澡很痛苦<br>我覺得最折磨的就是沒洗澡，以前打 CTF 都會堅持要洗澡 QQ  </p>
+<h1 id="0x04-考後心得跟一些有的沒的"><a href="#0x04-考後心得跟一些有的沒的" class="headerlink" title="0x04 考後心得跟一些有的沒的"></a>0x04 考後心得跟一些有的沒的</h1><p>差點考不了試，因為護照一直沒用到所以沒發現他過期<br>謝謝你武漢肺炎<br>還好有帶身分證也跟對方解釋說因為沒辦法出國所以根本沒注意到 &#x3D;&#x3D;  </p>
+<p>這是考試真的是各種重挫信心欸，啊不對我 AD 本來就爛<br>邊考試會邊想起很多事情，有種看見人生跑馬燈的感覺<br>本來有拿白紙想說做一點筆記，結果我在上面寫滿了救救我  </p>
+<p>不過在最後剩下一個半小時的時候發生地震，我直接跟監考官說有地震我先跑等等回來<br>這樣算某種程度上的成就解鎖了吧 …<br>哦對地震完我直接提早結束考試，半夜一個人在公司面對地震真的太損耗 san 值了</p>
+<p>考完要寫的報告樣板可以拿網路上的或是官方提供的<br>我自己是用官方提供的，記得每個步驟都要截圖啊  </p>
+<h1 id="0x05-心得總結"><a href="#0x05-心得總結" class="headerlink" title="0x05 心得總結"></a>0x05 心得總結</h1><ul>
+<li>Lab 關於 AD 的題目一定要做，不可以跳掉 QQ  </li>
+<li>提權提的好，分數沒煩惱  </li>
+<li>要記得睡飽</li>
+<li>不要太緊張</li>
+<li>不要遇到地震 &#x3D;&#x3D;</li>
+<li>心中有個信仰會比較容易撐過去，像我就是倒數 Elden Ring 發售</li>
+</ul>
+<p>大概就是這樣吧，有什麼漏掉的之後再說</p>
+<p>最後要感謝我同事，一直跟我說慢慢來不用急，還有送我一杯星巴克 QQ</p>
+<h1 id="0x06-參考資料"><a href="#0x06-參考資料" class="headerlink" title="0x06 參考資料"></a>0x06 參考資料</h1><p>一些陪伴我度過考試時間的參考資料</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://fareedfauzi.gitbook.io/oscp-notes/">OSCP Note</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/">HackTricks</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzE5OTA5NQ==&mid=2247483807&idx=1&sn=59be50aa5cc735f055db596269a857ce&chksm=cf27ea07f8506311d1c421e48d17deeebc19d569b037e0eb6c83656fee30fd9d59cc8228e372&token=2130309421&lang=zh_CN">域渗透总结</a></li>
+</ul>
+
+	  <div class="article-footer-copyright">
+
+</div>
+
+	</div>
+
+	
+	<span id="/2022-02-14-about-oscp/" class="leancloud-visitors view" data-flag-title="OSCP 的血淚史">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2021-05-20-my-first-job/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2022-02-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/生活/">生活<span>3</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/murmur/">murmur<span>5</span></a></li> <li><a href="/tags/OSCP/">OSCP<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2022 freetsubasa's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+</body>
+   </html>
